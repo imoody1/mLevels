@@ -1,0 +1,86 @@
+# ==================================================
+#                  mLevels - config.yml
+# ==================================================
+
+general:
+  # When should a player receive their rank kit command?
+  # "on-respawn" -> right after respawning (recommended)
+  # "on-death"   -> the instant they die, before respawn
+  kit-give-timing: "on-respawn"
+  broadcast-level-up: true
+
+# ==================================================
+#   Starter kit - given to players with no rank permission and no progress yet
+# ==================================================
+starter-kit:
+  command: "kit starter %player%"
+
+# ==================================================
+#   Rank kits - permission + command only. The plugin checks permissions on
+#   respawn/death and runs the matching command through the console, so you
+#   can hook into ANY kits plugin you already use (ExtremeKits, KitsX, Kits...)
+#   Use %player% or {player} inside the command for the player's name.
+#
+#   If a player has more than one rank permission, only the HIGHEST PRIORITY
+#   one (see rank-priority below) is used.
+# ==================================================
+rank-kits:
+  vip:
+    permission: "rank.vip"
+    command: "kit vip %player%"
+
+  vipplus:
+    permission: "rank.vipplus"
+    command: "kit vipplus %player%"
+
+  elite:
+    permission: "rank.elite"
+    command: "kit elite %player%"
+
+# Priority order - highest rank first. First permission match wins.
+rank-priority:
+  - "elite"
+  - "vipplus"
+  - "vip"
+
+# ==================================================
+#   Death Penalty - how many LEVELS a player loses on death, based on how
+#   far their progression (peak level) has gone. Fully editable: add,
+#   remove, or change tiers freely. "up-to-level" means "applies while the
+#   player's peak level is less than or equal to this number".
+#
+#   Default rules:
+#     Tier 1: level 1  -> before first Diamond item (level 44)   = lose 2
+#     Tier 2: level 44 -> before Diamond Protection III (level 82) = lose 3
+#     Tier 3: level 82 and beyond                                  = lose 4
+#
+#   NOTE: losing levels only reduces the visible level counter and affects
+#   the NEXT death-penalty tier lookup. It never strips away gear the player
+#   has already earned (their sword/armor/axe/bow stay exactly as they are).
+# ==================================================
+death-penalty:
+  default-loss: 2
+  tiers:
+    tier1:
+      up-to-level: 43
+      levels-lost: 2
+    tier2:
+      up-to-level: 81
+      levels-lost: 3
+    tier3:
+      up-to-level: 999999
+      levels-lost: 4
+
+messages:
+  prefix: "&8[&6mLevels&8] &r"
+  level-up: "&aYou reached level &e{level} &7(&e{stage}&7) &8- &7{max_level} max"
+  level-up-broadcast: "&e{player} &7reached level &6{level} &7(&6{stage}&7)"
+  level-restored: "&7Level restored: &e{level}&7/{max_level}"
+  death-penalty: "&cYou lost &e{amount} &clevels from dying! Current level: &e{level}"
+  no-permission: "&cYou don't have permission to do that"
+  reloaded: "&aConfig reloaded successfully"
+  level-set: "&aSet {player}'s level to {level}"
+  level-added: "&aAdded {amount} levels to {player} (now {level})"
+  level-removed: "&aRemoved {amount} levels from {player} (now {level})"
+  level-check: "&7{player} is level &e{level}&7/{max_level} &8(peak: &e{peak}&8)"
+  level-reset: "&aReset {player}'s level and progress"

@@ -1,0 +1,1655 @@
+# ==================================================
+#                mLevels - progression.yml
+#   Every level = exactly ONE upgrade or ONE item reward.
+#   Levels apply strictly in order on every kill.
+#   Everything below is editable - amounts, enchant levels,
+#   potion durations, item types, etc.
+# ==================================================
+
+max-level: 118
+
+levels:
+  1:
+    name: "Iron Sword"
+    action: GIVE_WEAPON
+    piece: SWORD
+    material: IRON
+    gear:
+      sword:     {material: IRON, sharpness: 0}
+      axe:       {material: IRON, sharpness: 0}
+      bow:       {power: 0, punch: 0}
+      chestplate: {material: IRON, protection: 0, thorns: 0}
+      leggings:   {material: IRON, protection: 0, thorns: 0}
+      helmet:     {material: IRON, protection: 0, thorns: 0}
+      boots:      {material: IRON, protection: 0, thorns: 0}
+
+  2:
+    name: "Iron Chestplate"
+    action: GIVE_ARMOR
+    piece: CHESTPLATE
+    material: IRON
+    gear:
+      sword:     {material: IRON, sharpness: 0}
+      axe:       {material: IRON, sharpness: 0}
+      bow:       {power: 0, punch: 0}
+      chestplate: {material: IRON, protection: 0, thorns: 0}
+      leggings:   {material: IRON, protection: 0, thorns: 0}
+      helmet:     {material: IRON, protection: 0, thorns: 0}
+      boots:      {material: IRON, protection: 0, thorns: 0}
+
+  3:
+    name: "Iron Leggings"
+    action: GIVE_ARMOR
+    piece: LEGGINGS
+    material: IRON
+    gear:
+      sword:     {material: IRON, sharpness: 0}
+      axe:       {material: IRON, sharpness: 0}
+      bow:       {power: 0, punch: 0}
+      chestplate: {material: IRON, protection: 0, thorns: 0}
+      leggings:   {material: IRON, protection: 0, thorns: 0}
+      helmet:     {material: IRON, protection: 0, thorns: 0}
+      boots:      {material: IRON, protection: 0, thorns: 0}
+
+  4:
+    name: "Iron Helmet"
+    action: GIVE_ARMOR
+    piece: HELMET
+    material: IRON
+    gear:
+      sword:     {material: IRON, sharpness: 0}
+      axe:       {material: IRON, sharpness: 0}
+      bow:       {power: 0, punch: 0}
+      chestplate: {material: IRON, protection: 0, thorns: 0}
+      leggings:   {material: IRON, protection: 0, thorns: 0}
+      helmet:     {material: IRON, protection: 0, thorns: 0}
+      boots:      {material: IRON, protection: 0, thorns: 0}
+
+  5:
+    name: "Iron Boots"
+    action: GIVE_ARMOR
+    piece: BOOTS
+    material: IRON
+    gear:
+      sword:     {material: IRON, sharpness: 0}
+      axe:       {material: IRON, sharpness: 0}
+      bow:       {power: 0, punch: 0}
+      chestplate: {material: IRON, protection: 0, thorns: 0}
+      leggings:   {material: IRON, protection: 0, thorns: 0}
+      helmet:     {material: IRON, protection: 0, thorns: 0}
+      boots:      {material: IRON, protection: 0, thorns: 0}
+
+  6:
+    name: "Iron Axe"
+    action: GIVE_WEAPON
+    piece: AXE
+    material: IRON
+    gear:
+      sword:     {material: IRON, sharpness: 0}
+      axe:       {material: IRON, sharpness: 0}
+      bow:       {power: 0, punch: 0}
+      chestplate: {material: IRON, protection: 0, thorns: 0}
+      leggings:   {material: IRON, protection: 0, thorns: 0}
+      helmet:     {material: IRON, protection: 0, thorns: 0}
+      boots:      {material: IRON, protection: 0, thorns: 0}
+
+  7:
+    name: "Bow"
+    action: GIVE_BOW
+    gear:
+      sword:     {material: IRON, sharpness: 0}
+      axe:       {material: IRON, sharpness: 0}
+      bow:       {power: 0, punch: 0}
+      chestplate: {material: IRON, protection: 0, thorns: 0}
+      leggings:   {material: IRON, protection: 0, thorns: 0}
+      helmet:     {material: IRON, protection: 0, thorns: 0}
+      boots:      {material: IRON, protection: 0, thorns: 0}
+
+  8:
+    name: "Stack Arrows"
+    action: ARROWS
+    amount: 64
+    gear:
+      sword:     {material: IRON, sharpness: 0}
+      axe:       {material: IRON, sharpness: 0}
+      bow:       {power: 0, punch: 0}
+      chestplate: {material: IRON, protection: 0, thorns: 0}
+      leggings:   {material: IRON, protection: 0, thorns: 0}
+      helmet:     {material: IRON, protection: 0, thorns: 0}
+      boots:      {material: IRON, protection: 0, thorns: 0}
+
+  9:
+    name: "8 Golden Apples"
+    action: ITEM
+    material: GOLDEN_APPLE
+    amount: 8
+    gear:
+      sword:     {material: IRON, sharpness: 0}
+      axe:       {material: IRON, sharpness: 0}
+      bow:       {power: 0, punch: 0}
+      chestplate: {material: IRON, protection: 0, thorns: 0}
+      leggings:   {material: IRON, protection: 0, thorns: 0}
+      helmet:     {material: IRON, protection: 0, thorns: 0}
+      boots:      {material: IRON, protection: 0, thorns: 0}
+
+  10:
+    name: "4 Ender Pearls"
+    action: ITEM
+    material: ENDER_PEARL
+    amount: 4
+    gear:
+      sword:     {material: IRON, sharpness: 0}
+      axe:       {material: IRON, sharpness: 0}
+      bow:       {power: 0, punch: 0}
+      chestplate: {material: IRON, protection: 0, thorns: 0}
+      leggings:   {material: IRON, protection: 0, thorns: 0}
+      helmet:     {material: IRON, protection: 0, thorns: 0}
+      boots:      {material: IRON, protection: 0, thorns: 0}
+
+  11:
+    name: "Iron Sword Sharpness I"
+    action: ENCHANT_SWORD
+    level: 1
+    gear:
+      sword:     {material: IRON, sharpness: 1}
+      axe:       {material: IRON, sharpness: 0}
+      bow:       {power: 0, punch: 0}
+      chestplate: {material: IRON, protection: 0, thorns: 0}
+      leggings:   {material: IRON, protection: 0, thorns: 0}
+      helmet:     {material: IRON, protection: 0, thorns: 0}
+      boots:      {material: IRON, protection: 0, thorns: 0}
+
+  12:
+    name: "Iron Chestplate Protection I"
+    action: ENCHANT_ARMOR
+    piece: CHESTPLATE
+    level: 1
+    gear:
+      sword:     {material: IRON, sharpness: 1}
+      axe:       {material: IRON, sharpness: 0}
+      bow:       {power: 0, punch: 0}
+      chestplate: {material: IRON, protection: 1, thorns: 0}
+      leggings:   {material: IRON, protection: 0, thorns: 0}
+      helmet:     {material: IRON, protection: 0, thorns: 0}
+      boots:      {material: IRON, protection: 0, thorns: 0}
+
+  13:
+    name: "Iron Leggings Protection I"
+    action: ENCHANT_ARMOR
+    piece: LEGGINGS
+    level: 1
+    gear:
+      sword:     {material: IRON, sharpness: 1}
+      axe:       {material: IRON, sharpness: 0}
+      bow:       {power: 0, punch: 0}
+      chestplate: {material: IRON, protection: 1, thorns: 0}
+      leggings:   {material: IRON, protection: 1, thorns: 0}
+      helmet:     {material: IRON, protection: 0, thorns: 0}
+      boots:      {material: IRON, protection: 0, thorns: 0}
+
+  14:
+    name: "Iron Helmet Protection I"
+    action: ENCHANT_ARMOR
+    piece: HELMET
+    level: 1
+    gear:
+      sword:     {material: IRON, sharpness: 1}
+      axe:       {material: IRON, sharpness: 0}
+      bow:       {power: 0, punch: 0}
+      chestplate: {material: IRON, protection: 1, thorns: 0}
+      leggings:   {material: IRON, protection: 1, thorns: 0}
+      helmet:     {material: IRON, protection: 1, thorns: 0}
+      boots:      {material: IRON, protection: 0, thorns: 0}
+
+  15:
+    name: "Iron Boots Protection I"
+    action: ENCHANT_ARMOR
+    piece: BOOTS
+    level: 1
+    gear:
+      sword:     {material: IRON, sharpness: 1}
+      axe:       {material: IRON, sharpness: 0}
+      bow:       {power: 0, punch: 0}
+      chestplate: {material: IRON, protection: 1, thorns: 0}
+      leggings:   {material: IRON, protection: 1, thorns: 0}
+      helmet:     {material: IRON, protection: 1, thorns: 0}
+      boots:      {material: IRON, protection: 1, thorns: 0}
+
+  16:
+    name: "Iron Axe Sharpness I"
+    action: ENCHANT_AXE
+    level: 1
+    gear:
+      sword:     {material: IRON, sharpness: 1}
+      axe:       {material: IRON, sharpness: 1}
+      bow:       {power: 0, punch: 0}
+      chestplate: {material: IRON, protection: 1, thorns: 0}
+      leggings:   {material: IRON, protection: 1, thorns: 0}
+      helmet:     {material: IRON, protection: 1, thorns: 0}
+      boots:      {material: IRON, protection: 1, thorns: 0}
+
+  17:
+    name: "12 Golden Apples"
+    action: ITEM
+    material: GOLDEN_APPLE
+    amount: 12
+    gear:
+      sword:     {material: IRON, sharpness: 1}
+      axe:       {material: IRON, sharpness: 1}
+      bow:       {power: 0, punch: 0}
+      chestplate: {material: IRON, protection: 1, thorns: 0}
+      leggings:   {material: IRON, protection: 1, thorns: 0}
+      helmet:     {material: IRON, protection: 1, thorns: 0}
+      boots:      {material: IRON, protection: 1, thorns: 0}
+
+  18:
+    name: "6 Ender Pearls"
+    action: ITEM
+    material: ENDER_PEARL
+    amount: 6
+    gear:
+      sword:     {material: IRON, sharpness: 1}
+      axe:       {material: IRON, sharpness: 1}
+      bow:       {power: 0, punch: 0}
+      chestplate: {material: IRON, protection: 1, thorns: 0}
+      leggings:   {material: IRON, protection: 1, thorns: 0}
+      helmet:     {material: IRON, protection: 1, thorns: 0}
+      boots:      {material: IRON, protection: 1, thorns: 0}
+
+  19:
+    name: "Bow Power II"
+    action: BOW_ENCHANT
+    kind: power
+    level: 2
+    gear:
+      sword:     {material: IRON, sharpness: 1}
+      axe:       {material: IRON, sharpness: 1}
+      bow:       {power: 2, punch: 0}
+      chestplate: {material: IRON, protection: 1, thorns: 0}
+      leggings:   {material: IRON, protection: 1, thorns: 0}
+      helmet:     {material: IRON, protection: 1, thorns: 0}
+      boots:      {material: IRON, protection: 1, thorns: 0}
+
+  20:
+    name: "Stack Arrows"
+    action: ARROWS
+    amount: 64
+    gear:
+      sword:     {material: IRON, sharpness: 1}
+      axe:       {material: IRON, sharpness: 1}
+      bow:       {power: 2, punch: 0}
+      chestplate: {material: IRON, protection: 1, thorns: 0}
+      leggings:   {material: IRON, protection: 1, thorns: 0}
+      helmet:     {material: IRON, protection: 1, thorns: 0}
+      boots:      {material: IRON, protection: 1, thorns: 0}
+
+  21:
+    name: "Iron Sword Sharpness II"
+    action: ENCHANT_SWORD
+    level: 2
+    gear:
+      sword:     {material: IRON, sharpness: 2}
+      axe:       {material: IRON, sharpness: 1}
+      bow:       {power: 2, punch: 0}
+      chestplate: {material: IRON, protection: 1, thorns: 0}
+      leggings:   {material: IRON, protection: 1, thorns: 0}
+      helmet:     {material: IRON, protection: 1, thorns: 0}
+      boots:      {material: IRON, protection: 1, thorns: 0}
+
+  22:
+    name: "Iron Chestplate Protection II"
+    action: ENCHANT_ARMOR
+    piece: CHESTPLATE
+    level: 2
+    gear:
+      sword:     {material: IRON, sharpness: 2}
+      axe:       {material: IRON, sharpness: 1}
+      bow:       {power: 2, punch: 0}
+      chestplate: {material: IRON, protection: 2, thorns: 0}
+      leggings:   {material: IRON, protection: 1, thorns: 0}
+      helmet:     {material: IRON, protection: 1, thorns: 0}
+      boots:      {material: IRON, protection: 1, thorns: 0}
+
+  23:
+    name: "Iron Leggings Protection II"
+    action: ENCHANT_ARMOR
+    piece: LEGGINGS
+    level: 2
+    gear:
+      sword:     {material: IRON, sharpness: 2}
+      axe:       {material: IRON, sharpness: 1}
+      bow:       {power: 2, punch: 0}
+      chestplate: {material: IRON, protection: 2, thorns: 0}
+      leggings:   {material: IRON, protection: 2, thorns: 0}
+      helmet:     {material: IRON, protection: 1, thorns: 0}
+      boots:      {material: IRON, protection: 1, thorns: 0}
+
+  24:
+    name: "Iron Helmet Protection II"
+    action: ENCHANT_ARMOR
+    piece: HELMET
+    level: 2
+    gear:
+      sword:     {material: IRON, sharpness: 2}
+      axe:       {material: IRON, sharpness: 1}
+      bow:       {power: 2, punch: 0}
+      chestplate: {material: IRON, protection: 2, thorns: 0}
+      leggings:   {material: IRON, protection: 2, thorns: 0}
+      helmet:     {material: IRON, protection: 2, thorns: 0}
+      boots:      {material: IRON, protection: 1, thorns: 0}
+
+  25:
+    name: "Iron Boots Protection II"
+    action: ENCHANT_ARMOR
+    piece: BOOTS
+    level: 2
+    gear:
+      sword:     {material: IRON, sharpness: 2}
+      axe:       {material: IRON, sharpness: 1}
+      bow:       {power: 2, punch: 0}
+      chestplate: {material: IRON, protection: 2, thorns: 0}
+      leggings:   {material: IRON, protection: 2, thorns: 0}
+      helmet:     {material: IRON, protection: 2, thorns: 0}
+      boots:      {material: IRON, protection: 2, thorns: 0}
+
+  26:
+    name: "Iron Axe Sharpness II"
+    action: ENCHANT_AXE
+    level: 2
+    gear:
+      sword:     {material: IRON, sharpness: 2}
+      axe:       {material: IRON, sharpness: 2}
+      bow:       {power: 2, punch: 0}
+      chestplate: {material: IRON, protection: 2, thorns: 0}
+      leggings:   {material: IRON, protection: 2, thorns: 0}
+      helmet:     {material: IRON, protection: 2, thorns: 0}
+      boots:      {material: IRON, protection: 2, thorns: 0}
+
+  27:
+    name: "14 Golden Apples"
+    action: ITEM
+    material: GOLDEN_APPLE
+    amount: 14
+    gear:
+      sword:     {material: IRON, sharpness: 2}
+      axe:       {material: IRON, sharpness: 2}
+      bow:       {power: 2, punch: 0}
+      chestplate: {material: IRON, protection: 2, thorns: 0}
+      leggings:   {material: IRON, protection: 2, thorns: 0}
+      helmet:     {material: IRON, protection: 2, thorns: 0}
+      boots:      {material: IRON, protection: 2, thorns: 0}
+
+  28:
+    name: "8 Ender Pearls"
+    action: ITEM
+    material: ENDER_PEARL
+    amount: 8
+    gear:
+      sword:     {material: IRON, sharpness: 2}
+      axe:       {material: IRON, sharpness: 2}
+      bow:       {power: 2, punch: 0}
+      chestplate: {material: IRON, protection: 2, thorns: 0}
+      leggings:   {material: IRON, protection: 2, thorns: 0}
+      helmet:     {material: IRON, protection: 2, thorns: 0}
+      boots:      {material: IRON, protection: 2, thorns: 0}
+
+  29:
+    name: "Bow Power III"
+    action: BOW_ENCHANT
+    kind: power
+    level: 3
+    gear:
+      sword:     {material: IRON, sharpness: 2}
+      axe:       {material: IRON, sharpness: 2}
+      bow:       {power: 3, punch: 0}
+      chestplate: {material: IRON, protection: 2, thorns: 0}
+      leggings:   {material: IRON, protection: 2, thorns: 0}
+      helmet:     {material: IRON, protection: 2, thorns: 0}
+      boots:      {material: IRON, protection: 2, thorns: 0}
+
+  30:
+    name: "Stack Arrows"
+    action: ARROWS
+    amount: 64
+    gear:
+      sword:     {material: IRON, sharpness: 2}
+      axe:       {material: IRON, sharpness: 2}
+      bow:       {power: 3, punch: 0}
+      chestplate: {material: IRON, protection: 2, thorns: 0}
+      leggings:   {material: IRON, protection: 2, thorns: 0}
+      helmet:     {material: IRON, protection: 2, thorns: 0}
+      boots:      {material: IRON, protection: 2, thorns: 0}
+
+  31:
+    name: "Iron Sword Sharpness III"
+    action: ENCHANT_SWORD
+    level: 3
+    gear:
+      sword:     {material: IRON, sharpness: 3}
+      axe:       {material: IRON, sharpness: 2}
+      bow:       {power: 3, punch: 0}
+      chestplate: {material: IRON, protection: 2, thorns: 0}
+      leggings:   {material: IRON, protection: 2, thorns: 0}
+      helmet:     {material: IRON, protection: 2, thorns: 0}
+      boots:      {material: IRON, protection: 2, thorns: 0}
+
+  32:
+    name: "Iron Chestplate Protection III"
+    action: ENCHANT_ARMOR
+    piece: CHESTPLATE
+    level: 3
+    gear:
+      sword:     {material: IRON, sharpness: 3}
+      axe:       {material: IRON, sharpness: 2}
+      bow:       {power: 3, punch: 0}
+      chestplate: {material: IRON, protection: 3, thorns: 0}
+      leggings:   {material: IRON, protection: 2, thorns: 0}
+      helmet:     {material: IRON, protection: 2, thorns: 0}
+      boots:      {material: IRON, protection: 2, thorns: 0}
+
+  33:
+    name: "Iron Leggings Protection III"
+    action: ENCHANT_ARMOR
+    piece: LEGGINGS
+    level: 3
+    gear:
+      sword:     {material: IRON, sharpness: 3}
+      axe:       {material: IRON, sharpness: 2}
+      bow:       {power: 3, punch: 0}
+      chestplate: {material: IRON, protection: 3, thorns: 0}
+      leggings:   {material: IRON, protection: 3, thorns: 0}
+      helmet:     {material: IRON, protection: 2, thorns: 0}
+      boots:      {material: IRON, protection: 2, thorns: 0}
+
+  34:
+    name: "Iron Helmet Protection III"
+    action: ENCHANT_ARMOR
+    piece: HELMET
+    level: 3
+    gear:
+      sword:     {material: IRON, sharpness: 3}
+      axe:       {material: IRON, sharpness: 2}
+      bow:       {power: 3, punch: 0}
+      chestplate: {material: IRON, protection: 3, thorns: 0}
+      leggings:   {material: IRON, protection: 3, thorns: 0}
+      helmet:     {material: IRON, protection: 3, thorns: 0}
+      boots:      {material: IRON, protection: 2, thorns: 0}
+
+  35:
+    name: "Iron Boots Protection III"
+    action: ENCHANT_ARMOR
+    piece: BOOTS
+    level: 3
+    gear:
+      sword:     {material: IRON, sharpness: 3}
+      axe:       {material: IRON, sharpness: 2}
+      bow:       {power: 3, punch: 0}
+      chestplate: {material: IRON, protection: 3, thorns: 0}
+      leggings:   {material: IRON, protection: 3, thorns: 0}
+      helmet:     {material: IRON, protection: 3, thorns: 0}
+      boots:      {material: IRON, protection: 3, thorns: 0}
+
+  36:
+    name: "Iron Axe Sharpness III"
+    action: ENCHANT_AXE
+    level: 3
+    gear:
+      sword:     {material: IRON, sharpness: 3}
+      axe:       {material: IRON, sharpness: 3}
+      bow:       {power: 3, punch: 0}
+      chestplate: {material: IRON, protection: 3, thorns: 0}
+      leggings:   {material: IRON, protection: 3, thorns: 0}
+      helmet:     {material: IRON, protection: 3, thorns: 0}
+      boots:      {material: IRON, protection: 3, thorns: 0}
+
+  37:
+    name: "16 Golden Apples"
+    action: ITEM
+    material: GOLDEN_APPLE
+    amount: 16
+    gear:
+      sword:     {material: IRON, sharpness: 3}
+      axe:       {material: IRON, sharpness: 3}
+      bow:       {power: 3, punch: 0}
+      chestplate: {material: IRON, protection: 3, thorns: 0}
+      leggings:   {material: IRON, protection: 3, thorns: 0}
+      helmet:     {material: IRON, protection: 3, thorns: 0}
+      boots:      {material: IRON, protection: 3, thorns: 0}
+
+  38:
+    name: "8 Ender Pearls"
+    action: ITEM
+    material: ENDER_PEARL
+    amount: 8
+    gear:
+      sword:     {material: IRON, sharpness: 3}
+      axe:       {material: IRON, sharpness: 3}
+      bow:       {power: 3, punch: 0}
+      chestplate: {material: IRON, protection: 3, thorns: 0}
+      leggings:   {material: IRON, protection: 3, thorns: 0}
+      helmet:     {material: IRON, protection: 3, thorns: 0}
+      boots:      {material: IRON, protection: 3, thorns: 0}
+
+  39:
+    name: "Bow Power IV"
+    action: BOW_ENCHANT
+    kind: power
+    level: 4
+    gear:
+      sword:     {material: IRON, sharpness: 3}
+      axe:       {material: IRON, sharpness: 3}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: IRON, protection: 3, thorns: 0}
+      leggings:   {material: IRON, protection: 3, thorns: 0}
+      helmet:     {material: IRON, protection: 3, thorns: 0}
+      boots:      {material: IRON, protection: 3, thorns: 0}
+
+  40:
+    name: "Stack Arrows"
+    action: ARROWS
+    amount: 64
+    gear:
+      sword:     {material: IRON, sharpness: 3}
+      axe:       {material: IRON, sharpness: 3}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: IRON, protection: 3, thorns: 0}
+      leggings:   {material: IRON, protection: 3, thorns: 0}
+      helmet:     {material: IRON, protection: 3, thorns: 0}
+      boots:      {material: IRON, protection: 3, thorns: 0}
+
+  41:
+    name: "Jump Boost I Potion"
+    action: POTION
+    effect: JUMP_BOOST
+    level: 1
+    duration_seconds: 30
+    gear:
+      sword:     {material: IRON, sharpness: 3}
+      axe:       {material: IRON, sharpness: 3}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: IRON, protection: 3, thorns: 0}
+      leggings:   {material: IRON, protection: 3, thorns: 0}
+      helmet:     {material: IRON, protection: 3, thorns: 0}
+      boots:      {material: IRON, protection: 3, thorns: 0}
+
+  42:
+    name: "Strength I Potion"
+    action: POTION
+    effect: STRENGTH
+    level: 1
+    duration_seconds: 30
+    gear:
+      sword:     {material: IRON, sharpness: 3}
+      axe:       {material: IRON, sharpness: 3}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: IRON, protection: 3, thorns: 0}
+      leggings:   {material: IRON, protection: 3, thorns: 0}
+      helmet:     {material: IRON, protection: 3, thorns: 0}
+      boots:      {material: IRON, protection: 3, thorns: 0}
+
+  43:
+    name: "Speed I Potion"
+    action: POTION
+    effect: SPEED
+    level: 1
+    duration_seconds: 30
+    gear:
+      sword:     {material: IRON, sharpness: 3}
+      axe:       {material: IRON, sharpness: 3}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: IRON, protection: 3, thorns: 0}
+      leggings:   {material: IRON, protection: 3, thorns: 0}
+      helmet:     {material: IRON, protection: 3, thorns: 0}
+      boots:      {material: IRON, protection: 3, thorns: 0}
+
+  44:
+    name: "Diamond Sword"
+    action: GIVE_WEAPON
+    piece: SWORD
+    material: DIAMOND
+    gear:
+      sword:     {material: DIAMOND, sharpness: 0}
+      axe:       {material: IRON, sharpness: 3}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: IRON, protection: 3, thorns: 0}
+      leggings:   {material: IRON, protection: 3, thorns: 0}
+      helmet:     {material: IRON, protection: 3, thorns: 0}
+      boots:      {material: IRON, protection: 3, thorns: 0}
+
+  45:
+    name: "Diamond Chestplate"
+    action: GIVE_ARMOR
+    piece: CHESTPLATE
+    material: DIAMOND
+    gear:
+      sword:     {material: DIAMOND, sharpness: 0}
+      axe:       {material: IRON, sharpness: 3}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: DIAMOND, protection: 0, thorns: 0}
+      leggings:   {material: IRON, protection: 3, thorns: 0}
+      helmet:     {material: IRON, protection: 3, thorns: 0}
+      boots:      {material: IRON, protection: 3, thorns: 0}
+
+  46:
+    name: "Diamond Leggings"
+    action: GIVE_ARMOR
+    piece: LEGGINGS
+    material: DIAMOND
+    gear:
+      sword:     {material: DIAMOND, sharpness: 0}
+      axe:       {material: IRON, sharpness: 3}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: DIAMOND, protection: 0, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 0, thorns: 0}
+      helmet:     {material: IRON, protection: 3, thorns: 0}
+      boots:      {material: IRON, protection: 3, thorns: 0}
+
+  47:
+    name: "Diamond Helmet"
+    action: GIVE_ARMOR
+    piece: HELMET
+    material: DIAMOND
+    gear:
+      sword:     {material: DIAMOND, sharpness: 0}
+      axe:       {material: IRON, sharpness: 3}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: DIAMOND, protection: 0, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 0, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 0, thorns: 0}
+      boots:      {material: IRON, protection: 3, thorns: 0}
+
+  48:
+    name: "Diamond Boots"
+    action: GIVE_ARMOR
+    piece: BOOTS
+    material: DIAMOND
+    gear:
+      sword:     {material: DIAMOND, sharpness: 0}
+      axe:       {material: IRON, sharpness: 3}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: DIAMOND, protection: 0, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 0, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 0, thorns: 0}
+      boots:      {material: DIAMOND, protection: 0, thorns: 0}
+
+  49:
+    name: "Diamond Axe"
+    action: GIVE_WEAPON
+    piece: AXE
+    material: DIAMOND
+    gear:
+      sword:     {material: DIAMOND, sharpness: 0}
+      axe:       {material: DIAMOND, sharpness: 0}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: DIAMOND, protection: 0, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 0, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 0, thorns: 0}
+      boots:      {material: DIAMOND, protection: 0, thorns: 0}
+
+  50:
+    name: "18 Golden Apples"
+    action: ITEM
+    material: GOLDEN_APPLE
+    amount: 18
+    gear:
+      sword:     {material: DIAMOND, sharpness: 0}
+      axe:       {material: DIAMOND, sharpness: 0}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: DIAMOND, protection: 0, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 0, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 0, thorns: 0}
+      boots:      {material: DIAMOND, protection: 0, thorns: 0}
+
+  51:
+    name: "1 Enchanted Golden Apple"
+    action: ITEM
+    material: ENCHANTED_GOLDEN_APPLE
+    amount: 1
+    gear:
+      sword:     {material: DIAMOND, sharpness: 0}
+      axe:       {material: DIAMOND, sharpness: 0}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: DIAMOND, protection: 0, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 0, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 0, thorns: 0}
+      boots:      {material: DIAMOND, protection: 0, thorns: 0}
+
+  52:
+    name: "10 Ender Pearls"
+    action: ITEM
+    material: ENDER_PEARL
+    amount: 10
+    gear:
+      sword:     {material: DIAMOND, sharpness: 0}
+      axe:       {material: DIAMOND, sharpness: 0}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: DIAMOND, protection: 0, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 0, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 0, thorns: 0}
+      boots:      {material: DIAMOND, protection: 0, thorns: 0}
+
+  53:
+    name: "Jump Boost I Potion (Long Duration)"
+    action: POTION
+    effect: JUMP_BOOST
+    level: 1
+    duration_seconds: 90
+    gear:
+      sword:     {material: DIAMOND, sharpness: 0}
+      axe:       {material: DIAMOND, sharpness: 0}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: DIAMOND, protection: 0, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 0, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 0, thorns: 0}
+      boots:      {material: DIAMOND, protection: 0, thorns: 0}
+
+  54:
+    name: "Strength I Potion (Long Duration)"
+    action: POTION
+    effect: STRENGTH
+    level: 1
+    duration_seconds: 90
+    gear:
+      sword:     {material: DIAMOND, sharpness: 0}
+      axe:       {material: DIAMOND, sharpness: 0}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: DIAMOND, protection: 0, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 0, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 0, thorns: 0}
+      boots:      {material: DIAMOND, protection: 0, thorns: 0}
+
+  55:
+    name: "Speed I Potion (Long Duration)"
+    action: POTION
+    effect: SPEED
+    level: 1
+    duration_seconds: 90
+    gear:
+      sword:     {material: DIAMOND, sharpness: 0}
+      axe:       {material: DIAMOND, sharpness: 0}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: DIAMOND, protection: 0, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 0, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 0, thorns: 0}
+      boots:      {material: DIAMOND, protection: 0, thorns: 0}
+
+  56:
+    name: "Diamond Sword Sharpness I"
+    action: ENCHANT_SWORD
+    level: 1
+    gear:
+      sword:     {material: DIAMOND, sharpness: 1}
+      axe:       {material: DIAMOND, sharpness: 0}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: DIAMOND, protection: 0, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 0, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 0, thorns: 0}
+      boots:      {material: DIAMOND, protection: 0, thorns: 0}
+
+  57:
+    name: "Diamond Chestplate Protection I"
+    action: ENCHANT_ARMOR
+    piece: CHESTPLATE
+    level: 1
+    gear:
+      sword:     {material: DIAMOND, sharpness: 1}
+      axe:       {material: DIAMOND, sharpness: 0}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: DIAMOND, protection: 1, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 0, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 0, thorns: 0}
+      boots:      {material: DIAMOND, protection: 0, thorns: 0}
+
+  58:
+    name: "Diamond Leggings Protection I"
+    action: ENCHANT_ARMOR
+    piece: LEGGINGS
+    level: 1
+    gear:
+      sword:     {material: DIAMOND, sharpness: 1}
+      axe:       {material: DIAMOND, sharpness: 0}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: DIAMOND, protection: 1, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 1, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 0, thorns: 0}
+      boots:      {material: DIAMOND, protection: 0, thorns: 0}
+
+  59:
+    name: "Diamond Helmet Protection I"
+    action: ENCHANT_ARMOR
+    piece: HELMET
+    level: 1
+    gear:
+      sword:     {material: DIAMOND, sharpness: 1}
+      axe:       {material: DIAMOND, sharpness: 0}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: DIAMOND, protection: 1, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 1, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 1, thorns: 0}
+      boots:      {material: DIAMOND, protection: 0, thorns: 0}
+
+  60:
+    name: "Diamond Boots Protection I"
+    action: ENCHANT_ARMOR
+    piece: BOOTS
+    level: 1
+    gear:
+      sword:     {material: DIAMOND, sharpness: 1}
+      axe:       {material: DIAMOND, sharpness: 0}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: DIAMOND, protection: 1, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 1, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 1, thorns: 0}
+      boots:      {material: DIAMOND, protection: 1, thorns: 0}
+
+  61:
+    name: "Diamond Axe Sharpness I"
+    action: ENCHANT_AXE
+    level: 1
+    gear:
+      sword:     {material: DIAMOND, sharpness: 1}
+      axe:       {material: DIAMOND, sharpness: 1}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: DIAMOND, protection: 1, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 1, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 1, thorns: 0}
+      boots:      {material: DIAMOND, protection: 1, thorns: 0}
+
+  62:
+    name: "20 Golden Apples"
+    action: ITEM
+    material: GOLDEN_APPLE
+    amount: 20
+    gear:
+      sword:     {material: DIAMOND, sharpness: 1}
+      axe:       {material: DIAMOND, sharpness: 1}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: DIAMOND, protection: 1, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 1, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 1, thorns: 0}
+      boots:      {material: DIAMOND, protection: 1, thorns: 0}
+
+  63:
+    name: "12 Ender Pearls"
+    action: ITEM
+    material: ENDER_PEARL
+    amount: 12
+    gear:
+      sword:     {material: DIAMOND, sharpness: 1}
+      axe:       {material: DIAMOND, sharpness: 1}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: DIAMOND, protection: 1, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 1, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 1, thorns: 0}
+      boots:      {material: DIAMOND, protection: 1, thorns: 0}
+
+  64:
+    name: "2 Enchanted Golden Apples"
+    action: ITEM
+    material: ENCHANTED_GOLDEN_APPLE
+    amount: 2
+    gear:
+      sword:     {material: DIAMOND, sharpness: 1}
+      axe:       {material: DIAMOND, sharpness: 1}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: DIAMOND, protection: 1, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 1, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 1, thorns: 0}
+      boots:      {material: DIAMOND, protection: 1, thorns: 0}
+
+  65:
+    name: "Jump Boost II Potion"
+    action: POTION
+    effect: JUMP_BOOST
+    level: 2
+    duration_seconds: 30
+    gear:
+      sword:     {material: DIAMOND, sharpness: 1}
+      axe:       {material: DIAMOND, sharpness: 1}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: DIAMOND, protection: 1, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 1, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 1, thorns: 0}
+      boots:      {material: DIAMOND, protection: 1, thorns: 0}
+
+  66:
+    name: "Strength II Potion"
+    action: POTION
+    effect: STRENGTH
+    level: 2
+    duration_seconds: 30
+    gear:
+      sword:     {material: DIAMOND, sharpness: 1}
+      axe:       {material: DIAMOND, sharpness: 1}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: DIAMOND, protection: 1, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 1, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 1, thorns: 0}
+      boots:      {material: DIAMOND, protection: 1, thorns: 0}
+
+  67:
+    name: "Speed II Potion"
+    action: POTION
+    effect: SPEED
+    level: 2
+    duration_seconds: 30
+    gear:
+      sword:     {material: DIAMOND, sharpness: 1}
+      axe:       {material: DIAMOND, sharpness: 1}
+      bow:       {power: 4, punch: 0}
+      chestplate: {material: DIAMOND, protection: 1, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 1, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 1, thorns: 0}
+      boots:      {material: DIAMOND, protection: 1, thorns: 0}
+
+  68:
+    name: "Bow Punch I"
+    action: BOW_ENCHANT
+    kind: punch
+    level: 1
+    gear:
+      sword:     {material: DIAMOND, sharpness: 1}
+      axe:       {material: DIAMOND, sharpness: 1}
+      bow:       {power: 4, punch: 1}
+      chestplate: {material: DIAMOND, protection: 1, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 1, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 1, thorns: 0}
+      boots:      {material: DIAMOND, protection: 1, thorns: 0}
+
+  69:
+    name: "Stack Arrows"
+    action: ARROWS
+    amount: 64
+    gear:
+      sword:     {material: DIAMOND, sharpness: 1}
+      axe:       {material: DIAMOND, sharpness: 1}
+      bow:       {power: 4, punch: 1}
+      chestplate: {material: DIAMOND, protection: 1, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 1, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 1, thorns: 0}
+      boots:      {material: DIAMOND, protection: 1, thorns: 0}
+
+  70:
+    name: "Diamond Sword Sharpness II"
+    action: ENCHANT_SWORD
+    level: 2
+    gear:
+      sword:     {material: DIAMOND, sharpness: 2}
+      axe:       {material: DIAMOND, sharpness: 1}
+      bow:       {power: 4, punch: 1}
+      chestplate: {material: DIAMOND, protection: 1, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 1, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 1, thorns: 0}
+      boots:      {material: DIAMOND, protection: 1, thorns: 0}
+
+  71:
+    name: "Diamond Chestplate Protection II"
+    action: ENCHANT_ARMOR
+    piece: CHESTPLATE
+    level: 2
+    gear:
+      sword:     {material: DIAMOND, sharpness: 2}
+      axe:       {material: DIAMOND, sharpness: 1}
+      bow:       {power: 4, punch: 1}
+      chestplate: {material: DIAMOND, protection: 2, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 1, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 1, thorns: 0}
+      boots:      {material: DIAMOND, protection: 1, thorns: 0}
+
+  72:
+    name: "Diamond Leggings Protection II"
+    action: ENCHANT_ARMOR
+    piece: LEGGINGS
+    level: 2
+    gear:
+      sword:     {material: DIAMOND, sharpness: 2}
+      axe:       {material: DIAMOND, sharpness: 1}
+      bow:       {power: 4, punch: 1}
+      chestplate: {material: DIAMOND, protection: 2, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 2, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 1, thorns: 0}
+      boots:      {material: DIAMOND, protection: 1, thorns: 0}
+
+  73:
+    name: "Diamond Helmet Protection II"
+    action: ENCHANT_ARMOR
+    piece: HELMET
+    level: 2
+    gear:
+      sword:     {material: DIAMOND, sharpness: 2}
+      axe:       {material: DIAMOND, sharpness: 1}
+      bow:       {power: 4, punch: 1}
+      chestplate: {material: DIAMOND, protection: 2, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 2, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 2, thorns: 0}
+      boots:      {material: DIAMOND, protection: 1, thorns: 0}
+
+  74:
+    name: "Diamond Boots Protection II"
+    action: ENCHANT_ARMOR
+    piece: BOOTS
+    level: 2
+    gear:
+      sword:     {material: DIAMOND, sharpness: 2}
+      axe:       {material: DIAMOND, sharpness: 1}
+      bow:       {power: 4, punch: 1}
+      chestplate: {material: DIAMOND, protection: 2, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 2, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 2, thorns: 0}
+      boots:      {material: DIAMOND, protection: 2, thorns: 0}
+
+  75:
+    name: "Diamond Axe Sharpness II"
+    action: ENCHANT_AXE
+    level: 2
+    gear:
+      sword:     {material: DIAMOND, sharpness: 2}
+      axe:       {material: DIAMOND, sharpness: 2}
+      bow:       {power: 4, punch: 1}
+      chestplate: {material: DIAMOND, protection: 2, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 2, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 2, thorns: 0}
+      boots:      {material: DIAMOND, protection: 2, thorns: 0}
+
+  76:
+    name: "22 Golden Apples"
+    action: ITEM
+    material: GOLDEN_APPLE
+    amount: 22
+    gear:
+      sword:     {material: DIAMOND, sharpness: 2}
+      axe:       {material: DIAMOND, sharpness: 2}
+      bow:       {power: 4, punch: 1}
+      chestplate: {material: DIAMOND, protection: 2, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 2, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 2, thorns: 0}
+      boots:      {material: DIAMOND, protection: 2, thorns: 0}
+
+  77:
+    name: "14 Ender Pearls"
+    action: ITEM
+    material: ENDER_PEARL
+    amount: 14
+    gear:
+      sword:     {material: DIAMOND, sharpness: 2}
+      axe:       {material: DIAMOND, sharpness: 2}
+      bow:       {power: 4, punch: 1}
+      chestplate: {material: DIAMOND, protection: 2, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 2, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 2, thorns: 0}
+      boots:      {material: DIAMOND, protection: 2, thorns: 0}
+
+  78:
+    name: "3 Enchanted Golden Apples"
+    action: ITEM
+    material: ENCHANTED_GOLDEN_APPLE
+    amount: 3
+    gear:
+      sword:     {material: DIAMOND, sharpness: 2}
+      axe:       {material: DIAMOND, sharpness: 2}
+      bow:       {power: 4, punch: 1}
+      chestplate: {material: DIAMOND, protection: 2, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 2, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 2, thorns: 0}
+      boots:      {material: DIAMOND, protection: 2, thorns: 0}
+
+  79:
+    name: "Jump Boost II Potion (Long Duration)"
+    action: POTION
+    effect: JUMP_BOOST
+    level: 2
+    duration_seconds: 90
+    gear:
+      sword:     {material: DIAMOND, sharpness: 2}
+      axe:       {material: DIAMOND, sharpness: 2}
+      bow:       {power: 4, punch: 1}
+      chestplate: {material: DIAMOND, protection: 2, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 2, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 2, thorns: 0}
+      boots:      {material: DIAMOND, protection: 2, thorns: 0}
+
+  80:
+    name: "Strength II Potion (Long Duration)"
+    action: POTION
+    effect: STRENGTH
+    level: 2
+    duration_seconds: 90
+    gear:
+      sword:     {material: DIAMOND, sharpness: 2}
+      axe:       {material: DIAMOND, sharpness: 2}
+      bow:       {power: 4, punch: 1}
+      chestplate: {material: DIAMOND, protection: 2, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 2, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 2, thorns: 0}
+      boots:      {material: DIAMOND, protection: 2, thorns: 0}
+
+  81:
+    name: "Speed II Potion (Long Duration)"
+    action: POTION
+    effect: SPEED
+    level: 2
+    duration_seconds: 90
+    gear:
+      sword:     {material: DIAMOND, sharpness: 2}
+      axe:       {material: DIAMOND, sharpness: 2}
+      bow:       {power: 4, punch: 1}
+      chestplate: {material: DIAMOND, protection: 2, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 2, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 2, thorns: 0}
+      boots:      {material: DIAMOND, protection: 2, thorns: 0}
+
+  82:
+    name: "Diamond Sword Sharpness III"
+    action: ENCHANT_SWORD
+    level: 3
+    gear:
+      sword:     {material: DIAMOND, sharpness: 3}
+      axe:       {material: DIAMOND, sharpness: 2}
+      bow:       {power: 4, punch: 1}
+      chestplate: {material: DIAMOND, protection: 2, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 2, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 2, thorns: 0}
+      boots:      {material: DIAMOND, protection: 2, thorns: 0}
+
+  83:
+    name: "Diamond Chestplate Protection III"
+    action: ENCHANT_ARMOR
+    piece: CHESTPLATE
+    level: 3
+    gear:
+      sword:     {material: DIAMOND, sharpness: 3}
+      axe:       {material: DIAMOND, sharpness: 2}
+      bow:       {power: 4, punch: 1}
+      chestplate: {material: DIAMOND, protection: 3, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 2, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 2, thorns: 0}
+      boots:      {material: DIAMOND, protection: 2, thorns: 0}
+
+  84:
+    name: "Diamond Leggings Protection III"
+    action: ENCHANT_ARMOR
+    piece: LEGGINGS
+    level: 3
+    gear:
+      sword:     {material: DIAMOND, sharpness: 3}
+      axe:       {material: DIAMOND, sharpness: 2}
+      bow:       {power: 4, punch: 1}
+      chestplate: {material: DIAMOND, protection: 3, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 3, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 2, thorns: 0}
+      boots:      {material: DIAMOND, protection: 2, thorns: 0}
+
+  85:
+    name: "Diamond Helmet Protection III"
+    action: ENCHANT_ARMOR
+    piece: HELMET
+    level: 3
+    gear:
+      sword:     {material: DIAMOND, sharpness: 3}
+      axe:       {material: DIAMOND, sharpness: 2}
+      bow:       {power: 4, punch: 1}
+      chestplate: {material: DIAMOND, protection: 3, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 3, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 3, thorns: 0}
+      boots:      {material: DIAMOND, protection: 2, thorns: 0}
+
+  86:
+    name: "Diamond Boots Protection III"
+    action: ENCHANT_ARMOR
+    piece: BOOTS
+    level: 3
+    gear:
+      sword:     {material: DIAMOND, sharpness: 3}
+      axe:       {material: DIAMOND, sharpness: 2}
+      bow:       {power: 4, punch: 1}
+      chestplate: {material: DIAMOND, protection: 3, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 3, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 3, thorns: 0}
+      boots:      {material: DIAMOND, protection: 3, thorns: 0}
+
+  87:
+    name: "Diamond Axe Sharpness III"
+    action: ENCHANT_AXE
+    level: 3
+    gear:
+      sword:     {material: DIAMOND, sharpness: 3}
+      axe:       {material: DIAMOND, sharpness: 3}
+      bow:       {power: 4, punch: 1}
+      chestplate: {material: DIAMOND, protection: 3, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 3, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 3, thorns: 0}
+      boots:      {material: DIAMOND, protection: 3, thorns: 0}
+
+  88:
+    name: "24 Golden Apples"
+    action: ITEM
+    material: GOLDEN_APPLE
+    amount: 24
+    gear:
+      sword:     {material: DIAMOND, sharpness: 3}
+      axe:       {material: DIAMOND, sharpness: 3}
+      bow:       {power: 4, punch: 1}
+      chestplate: {material: DIAMOND, protection: 3, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 3, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 3, thorns: 0}
+      boots:      {material: DIAMOND, protection: 3, thorns: 0}
+
+  89:
+    name: "16 Ender Pearls"
+    action: ITEM
+    material: ENDER_PEARL
+    amount: 16
+    gear:
+      sword:     {material: DIAMOND, sharpness: 3}
+      axe:       {material: DIAMOND, sharpness: 3}
+      bow:       {power: 4, punch: 1}
+      chestplate: {material: DIAMOND, protection: 3, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 3, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 3, thorns: 0}
+      boots:      {material: DIAMOND, protection: 3, thorns: 0}
+
+  90:
+    name: "4 Enchanted Golden Apples"
+    action: ITEM
+    material: ENCHANTED_GOLDEN_APPLE
+    amount: 4
+    gear:
+      sword:     {material: DIAMOND, sharpness: 3}
+      axe:       {material: DIAMOND, sharpness: 3}
+      bow:       {power: 4, punch: 1}
+      chestplate: {material: DIAMOND, protection: 3, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 3, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 3, thorns: 0}
+      boots:      {material: DIAMOND, protection: 3, thorns: 0}
+
+  91:
+    name: "Bow Punch II"
+    action: BOW_ENCHANT
+    kind: punch
+    level: 2
+    gear:
+      sword:     {material: DIAMOND, sharpness: 3}
+      axe:       {material: DIAMOND, sharpness: 3}
+      bow:       {power: 4, punch: 2}
+      chestplate: {material: DIAMOND, protection: 3, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 3, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 3, thorns: 0}
+      boots:      {material: DIAMOND, protection: 3, thorns: 0}
+
+  92:
+    name: "Stack Arrows"
+    action: ARROWS
+    amount: 64
+    gear:
+      sword:     {material: DIAMOND, sharpness: 3}
+      axe:       {material: DIAMOND, sharpness: 3}
+      bow:       {power: 4, punch: 2}
+      chestplate: {material: DIAMOND, protection: 3, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 3, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 3, thorns: 0}
+      boots:      {material: DIAMOND, protection: 3, thorns: 0}
+
+  93:
+    name: "Diamond Sword Sharpness IV"
+    action: ENCHANT_SWORD
+    level: 4
+    gear:
+      sword:     {material: DIAMOND, sharpness: 4}
+      axe:       {material: DIAMOND, sharpness: 3}
+      bow:       {power: 4, punch: 2}
+      chestplate: {material: DIAMOND, protection: 3, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 3, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 3, thorns: 0}
+      boots:      {material: DIAMOND, protection: 3, thorns: 0}
+
+  94:
+    name: "Diamond Chestplate Protection IV"
+    action: ENCHANT_ARMOR
+    piece: CHESTPLATE
+    level: 4
+    gear:
+      sword:     {material: DIAMOND, sharpness: 4}
+      axe:       {material: DIAMOND, sharpness: 3}
+      bow:       {power: 4, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 3, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 3, thorns: 0}
+      boots:      {material: DIAMOND, protection: 3, thorns: 0}
+
+  95:
+    name: "Diamond Leggings Protection IV"
+    action: ENCHANT_ARMOR
+    piece: LEGGINGS
+    level: 4
+    gear:
+      sword:     {material: DIAMOND, sharpness: 4}
+      axe:       {material: DIAMOND, sharpness: 3}
+      bow:       {power: 4, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 4, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 3, thorns: 0}
+      boots:      {material: DIAMOND, protection: 3, thorns: 0}
+
+  96:
+    name: "Diamond Helmet Protection IV"
+    action: ENCHANT_ARMOR
+    piece: HELMET
+    level: 4
+    gear:
+      sword:     {material: DIAMOND, sharpness: 4}
+      axe:       {material: DIAMOND, sharpness: 3}
+      bow:       {power: 4, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 4, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 4, thorns: 0}
+      boots:      {material: DIAMOND, protection: 3, thorns: 0}
+
+  97:
+    name: "Diamond Boots Protection IV"
+    action: ENCHANT_ARMOR
+    piece: BOOTS
+    level: 4
+    gear:
+      sword:     {material: DIAMOND, sharpness: 4}
+      axe:       {material: DIAMOND, sharpness: 3}
+      bow:       {power: 4, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 4, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 4, thorns: 0}
+      boots:      {material: DIAMOND, protection: 4, thorns: 0}
+
+  98:
+    name: "Diamond Axe Sharpness IV"
+    action: ENCHANT_AXE
+    level: 4
+    gear:
+      sword:     {material: DIAMOND, sharpness: 4}
+      axe:       {material: DIAMOND, sharpness: 4}
+      bow:       {power: 4, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 4, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 4, thorns: 0}
+      boots:      {material: DIAMOND, protection: 4, thorns: 0}
+
+  99:
+    name: "Bow Power V"
+    action: BOW_ENCHANT
+    kind: power
+    level: 5
+    gear:
+      sword:     {material: DIAMOND, sharpness: 4}
+      axe:       {material: DIAMOND, sharpness: 4}
+      bow:       {power: 5, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 4, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 4, thorns: 0}
+      boots:      {material: DIAMOND, protection: 4, thorns: 0}
+
+  100:
+    name: "Stack Arrows"
+    action: ARROWS
+    amount: 64
+    gear:
+      sword:     {material: DIAMOND, sharpness: 4}
+      axe:       {material: DIAMOND, sharpness: 4}
+      bow:       {power: 5, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 4, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 4, thorns: 0}
+      boots:      {material: DIAMOND, protection: 4, thorns: 0}
+
+  101:
+    name: "26 Golden Apples"
+    action: ITEM
+    material: GOLDEN_APPLE
+    amount: 26
+    gear:
+      sword:     {material: DIAMOND, sharpness: 4}
+      axe:       {material: DIAMOND, sharpness: 4}
+      bow:       {power: 5, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 4, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 4, thorns: 0}
+      boots:      {material: DIAMOND, protection: 4, thorns: 0}
+
+  102:
+    name: "18 Ender Pearls"
+    action: ITEM
+    material: ENDER_PEARL
+    amount: 18
+    gear:
+      sword:     {material: DIAMOND, sharpness: 4}
+      axe:       {material: DIAMOND, sharpness: 4}
+      bow:       {power: 5, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 4, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 4, thorns: 0}
+      boots:      {material: DIAMOND, protection: 4, thorns: 0}
+
+  103:
+    name: "5 Enchanted Golden Apples"
+    action: ITEM
+    material: ENCHANTED_GOLDEN_APPLE
+    amount: 5
+    gear:
+      sword:     {material: DIAMOND, sharpness: 4}
+      axe:       {material: DIAMOND, sharpness: 4}
+      bow:       {power: 5, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 4, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 4, thorns: 0}
+      boots:      {material: DIAMOND, protection: 4, thorns: 0}
+
+  104:
+    name: "Diamond Sword Sharpness V"
+    action: ENCHANT_SWORD
+    level: 5
+    gear:
+      sword:     {material: DIAMOND, sharpness: 5}
+      axe:       {material: DIAMOND, sharpness: 4}
+      bow:       {power: 5, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 4, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 4, thorns: 0}
+      boots:      {material: DIAMOND, protection: 4, thorns: 0}
+
+  105:
+    name: "Diamond Axe Sharpness V"
+    action: ENCHANT_AXE
+    level: 5
+    gear:
+      sword:     {material: DIAMOND, sharpness: 5}
+      axe:       {material: DIAMOND, sharpness: 5}
+      bow:       {power: 5, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 0}
+      leggings:   {material: DIAMOND, protection: 4, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 4, thorns: 0}
+      boots:      {material: DIAMOND, protection: 4, thorns: 0}
+
+  106:
+    name: "Chestplate Thorns I"
+    action: THORNS
+    piece: CHESTPLATE
+    level: 1
+    gear:
+      sword:     {material: DIAMOND, sharpness: 5}
+      axe:       {material: DIAMOND, sharpness: 5}
+      bow:       {power: 5, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 1}
+      leggings:   {material: DIAMOND, protection: 4, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 4, thorns: 0}
+      boots:      {material: DIAMOND, protection: 4, thorns: 0}
+
+  107:
+    name: "Chestplate Thorns II"
+    action: THORNS
+    piece: CHESTPLATE
+    level: 2
+    gear:
+      sword:     {material: DIAMOND, sharpness: 5}
+      axe:       {material: DIAMOND, sharpness: 5}
+      bow:       {power: 5, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 2}
+      leggings:   {material: DIAMOND, protection: 4, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 4, thorns: 0}
+      boots:      {material: DIAMOND, protection: 4, thorns: 0}
+
+  108:
+    name: "Chestplate Thorns III"
+    action: THORNS
+    piece: CHESTPLATE
+    level: 3
+    gear:
+      sword:     {material: DIAMOND, sharpness: 5}
+      axe:       {material: DIAMOND, sharpness: 5}
+      bow:       {power: 5, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 3}
+      leggings:   {material: DIAMOND, protection: 4, thorns: 0}
+      helmet:     {material: DIAMOND, protection: 4, thorns: 0}
+      boots:      {material: DIAMOND, protection: 4, thorns: 0}
+
+  109:
+    name: "Leggings Thorns I"
+    action: THORNS
+    piece: LEGGINGS
+    level: 1
+    gear:
+      sword:     {material: DIAMOND, sharpness: 5}
+      axe:       {material: DIAMOND, sharpness: 5}
+      bow:       {power: 5, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 3}
+      leggings:   {material: DIAMOND, protection: 4, thorns: 1}
+      helmet:     {material: DIAMOND, protection: 4, thorns: 0}
+      boots:      {material: DIAMOND, protection: 4, thorns: 0}
+
+  110:
+    name: "Leggings Thorns II"
+    action: THORNS
+    piece: LEGGINGS
+    level: 2
+    gear:
+      sword:     {material: DIAMOND, sharpness: 5}
+      axe:       {material: DIAMOND, sharpness: 5}
+      bow:       {power: 5, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 3}
+      leggings:   {material: DIAMOND, protection: 4, thorns: 2}
+      helmet:     {material: DIAMOND, protection: 4, thorns: 0}
+      boots:      {material: DIAMOND, protection: 4, thorns: 0}
+
+  111:
+    name: "Leggings Thorns III"
+    action: THORNS
+    piece: LEGGINGS
+    level: 3
+    gear:
+      sword:     {material: DIAMOND, sharpness: 5}
+      axe:       {material: DIAMOND, sharpness: 5}
+      bow:       {power: 5, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 3}
+      leggings:   {material: DIAMOND, protection: 4, thorns: 3}
+      helmet:     {material: DIAMOND, protection: 4, thorns: 0}
+      boots:      {material: DIAMOND, protection: 4, thorns: 0}
+
+  112:
+    name: "Helmet Thorns I"
+    action: THORNS
+    piece: HELMET
+    level: 1
+    gear:
+      sword:     {material: DIAMOND, sharpness: 5}
+      axe:       {material: DIAMOND, sharpness: 5}
+      bow:       {power: 5, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 3}
+      leggings:   {material: DIAMOND, protection: 4, thorns: 3}
+      helmet:     {material: DIAMOND, protection: 4, thorns: 1}
+      boots:      {material: DIAMOND, protection: 4, thorns: 0}
+
+  113:
+    name: "Helmet Thorns II"
+    action: THORNS
+    piece: HELMET
+    level: 2
+    gear:
+      sword:     {material: DIAMOND, sharpness: 5}
+      axe:       {material: DIAMOND, sharpness: 5}
+      bow:       {power: 5, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 3}
+      leggings:   {material: DIAMOND, protection: 4, thorns: 3}
+      helmet:     {material: DIAMOND, protection: 4, thorns: 2}
+      boots:      {material: DIAMOND, protection: 4, thorns: 0}
+
+  114:
+    name: "Helmet Thorns III"
+    action: THORNS
+    piece: HELMET
+    level: 3
+    gear:
+      sword:     {material: DIAMOND, sharpness: 5}
+      axe:       {material: DIAMOND, sharpness: 5}
+      bow:       {power: 5, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 3}
+      leggings:   {material: DIAMOND, protection: 4, thorns: 3}
+      helmet:     {material: DIAMOND, protection: 4, thorns: 3}
+      boots:      {material: DIAMOND, protection: 4, thorns: 0}
+
+  115:
+    name: "Boots Thorns I"
+    action: THORNS
+    piece: BOOTS
+    level: 1
+    gear:
+      sword:     {material: DIAMOND, sharpness: 5}
+      axe:       {material: DIAMOND, sharpness: 5}
+      bow:       {power: 5, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 3}
+      leggings:   {material: DIAMOND, protection: 4, thorns: 3}
+      helmet:     {material: DIAMOND, protection: 4, thorns: 3}
+      boots:      {material: DIAMOND, protection: 4, thorns: 1}
+
+  116:
+    name: "Boots Thorns II"
+    action: THORNS
+    piece: BOOTS
+    level: 2
+    gear:
+      sword:     {material: DIAMOND, sharpness: 5}
+      axe:       {material: DIAMOND, sharpness: 5}
+      bow:       {power: 5, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 3}
+      leggings:   {material: DIAMOND, protection: 4, thorns: 3}
+      helmet:     {material: DIAMOND, protection: 4, thorns: 3}
+      boots:      {material: DIAMOND, protection: 4, thorns: 2}
+
+  117:
+    name: "Boots Thorns III"
+    action: THORNS
+    piece: BOOTS
+    level: 3
+    gear:
+      sword:     {material: DIAMOND, sharpness: 5}
+      axe:       {material: DIAMOND, sharpness: 5}
+      bow:       {power: 5, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 3}
+      leggings:   {material: DIAMOND, protection: 4, thorns: 3}
+      helmet:     {material: DIAMOND, protection: 4, thorns: 3}
+      boots:      {material: DIAMOND, protection: 4, thorns: 3}
+
+  118:
+    name: "Final Rewards - Max Level Reached"
+    action: FINAL
+    golden_apples: 64
+    enchanted_golden_apples: 32
+    harming_arrows_level: 2
+    resupply-on-kill: true   # simulates "unlimited" - refills stacks after every kill once max level is reached
+    resupply-golden-apples: 64
+    resupply-enchanted-golden-apples: 8
+    resupply-arrows: 64
+    resupply-harming-arrows: 64
+    gear:
+      sword:     {material: DIAMOND, sharpness: 5}
+      axe:       {material: DIAMOND, sharpness: 5}
+      bow:       {power: 5, punch: 2}
+      chestplate: {material: DIAMOND, protection: 4, thorns: 3}
+      leggings:   {material: DIAMOND, protection: 4, thorns: 3}
+      helmet:     {material: DIAMOND, protection: 4, thorns: 3}
+      boots:      {material: DIAMOND, protection: 4, thorns: 3}
