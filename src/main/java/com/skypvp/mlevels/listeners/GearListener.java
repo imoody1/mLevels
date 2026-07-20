@@ -18,7 +18,6 @@ import java.util.UUID;
 
 public class GearListener implements Listener {
 
-    // Materials that must NEVER drop on death, regardless of enchants
     private static final String[] PROTECTED_SUFFIXES = {
             "_SWORD", "_AXE", "_HELMET", "_CHESTPLATE", "_LEGGINGS", "_BOOTS"
     };
@@ -35,9 +34,6 @@ public class GearListener implements Listener {
         Player killer = victim.getKiller();
         UUID victimId = victim.getUniqueId();
 
-        // Strip protected progression gear from the drop list - it must
-        // never fall on the ground, no matter its level/enchants. Everything
-        // else (apples, pearls, arrows, potions, food...) drops normally.
         Iterator<ItemStack> it = event.getDrops().iterator();
         while (it.hasNext()) {
             ItemStack drop = it.next();
@@ -46,11 +42,8 @@ public class GearListener implements Listener {
             }
         }
 
-        // Apply the death penalty (reduces the visible level counter only -
-        // the player's actual gear/peak-level is never rolled back).
         applyDeathPenalty(victim);
 
-        // Give the killer a level up
         if (killer != null && !killer.getUniqueId().equals(victimId)) {
             levelUp(killer);
         }
@@ -66,17 +59,12 @@ public class GearListener implements Listener {
 
     private void applyDeathPenalty(Player victim) {
         UUID id = victim.getUniqueId();
-        int currentLevel = plugin.getPlayerDataManager().getLevel(id);
-        int peakLevel = plugin.getPlayerDataManager().getPeakLevel(id);
-
-        int penalty = plugin.getConfigManager().getDeathPenaltyForLevel(peakLevel);
-        int newLevel = Math.max(0, currentLevel - penalty);
-
-        plugin.getPlayerDataManager().setLevel(id, newLevel);
+        plugin.getPlayerDataManager().setLevel(id, 0);
+        plugin.getPlayerDataManager().setPeakLevel(id, 0);
 
         victim.sendMessage(plugin.getConfigManager().msg("death-penalty")
-                .replace("{amount}", String.valueOf(penalty))
-                .replace("{level}", String.valueOf(newLevel)));
+                .replace("{amount}", "all")
+                .replace("{level}", "0"));
     }
 
     private void levelUp(Player killer) {
@@ -86,7 +74,6 @@ public class GearListener implements Listener {
         int maxLevel = plugin.getLevelManager().getMaxLevel();
 
         if (currentLevel >= maxLevel) {
-            // Already maxed out - just keep supplies topped up ("unlimited" simulation)
             plugin.getLevelManager().resupplyIfMaxLevel(killer);
             return;
         }
@@ -95,11 +82,10 @@ public class GearListener implements Listener {
         plugin.getPlayerDataManager().setLevel(killerId, newLevel);
 
         if (newLevel > peakLevel) {
-            // Genuinely new ground - grant the real upgrade/reward for this level
             plugin.getPlayerDataManager().setPeakLevel(killerId, newLevel);
             Level level = plugin.getLevelManager().getLevel(newLevel);
             if (level != null) {
-                plugin.getLevelManager().applyGear(killer, level);
+                plugin.getLevelManager().applyDeltaGear(killer, level);
                 plugin.getLevelManager().giveLevelReward(killer, level);
 
                 killer.sendMessage(plugin.getConfigManager().msg("level-up")
@@ -117,7 +103,6 @@ public class GearListener implements Listener {
                 }
             }
         } else {
-            // Catching back up after a death penalty - no new reward, just informative message
             killer.sendMessage(plugin.getConfigManager().msg("level-restored")
                     .replace("{level}", String.valueOf(newLevel))
                     .replace("{max_level}", String.valueOf(maxLevel)));
@@ -140,29 +125,15 @@ public class GearListener implements Listener {
         int peakLevel = plugin.getPlayerDataManager().getPeakLevel(player.getUniqueId());
 
         if (peakLevel <= 0) {
-            int nextLevel = plugin.getLevelManager().getNextLevelForGear(player);
-            if (nextLevel > 1) {
-                startFromExistingGear(player, nextLevel);
-            } else {
-                grantStarterKit(player);
-            }
-            return;
+            grantStarterKit(player);
+        } else {
+            int currentLevel = plugin.getPlayerDataManager().getLevel(player.getUniqueId());
+            plugin.getLevelManager().applyCumulativeGear(player, Math.max(currentLevel, peakLevel));
         }
 
-        // Returning player with existing progress - just continue from
-        // wherever they already are, never reset.
-        Level level = plugin.getLevelManager().getLevel(peakLevel);
-        if (level != null) {
-            plugin.getLevelManager().applyGear(player, level);
-        }
+        giveRankKit(player);
     }
 
-    /**
-     * Brand new player setup - level 1 in progression.yml IS the starter kit
-     * (leather armor, wood sword/axe, plain bow, 1 golden apple). No rank
-     * or permission checks - everyone starts the same and progresses purely
-     * by killing.
-     */
     public void grantStarterKit(Player player) {
         UUID id = player.getUniqueId();
         plugin.getPlayerDataManager().setLevel(id, 1);
@@ -170,39 +141,19 @@ public class GearListener implements Listener {
 
         Level starter = plugin.getLevelManager().getLevel(1);
         if (starter != null) {
-            plugin.getLevelManager().applyGear(player, starter);
+            plugin.getLevelManager().applyCumulativeGear(player, 1);
             plugin.getLevelManager().giveLevelReward(player, starter);
         }
     }
 
-    private void startFromExistingGear(Player player, int nextLevel) {
-        UUID id = player.getUniqueId();
-        int currentLevel = Math.max(1, nextLevel - 1);
-        plugin.getPlayerDataManager().setLevel(id, currentLevel);
-        plugin.getPlayerDataManager().setPeakLevel(id, currentLevel);
-
-        Level next = plugin.getLevelManager().getLevel(nextLevel);
-        if (next != null) {
-            plugin.getLevelManager().applyGear(player, next);
-            plugin.getPlayerDataManager().setLevel(id, nextLevel);
-            plugin.getPlayerDataManager().setPeakLevel(id, nextLevel);
-            plugin.getLevelManager().giveLevelReward(player, next);
-        }
-    }
-
     private void handleRespawnGear(Player player) {
+        int currentLevel = plugin.getPlayerDataManager().getLevel(player.getUniqueId());
         int peakLevel = plugin.getPlayerDataManager().getPeakLevel(player.getUniqueId());
 
         if (peakLevel <= 0) {
-            // Safety net - should already be set to 1 on join, but never leave
-            // a player with no gear at all.
             grantStarterKit(player);
-            return;
-        }
-
-        Level level = plugin.getLevelManager().getLevel(peakLevel);
-        if (level != null) {
-            plugin.getLevelManager().applyGear(player, level);
+        } else {
+            plugin.getLevelManager().applyCumulativeGear(player, Math.max(currentLevel, peakLevel));
         }
 
         giveRankKit(player);

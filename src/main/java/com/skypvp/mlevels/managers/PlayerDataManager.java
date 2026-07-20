@@ -10,21 +10,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-/**
- * Tracks two numbers per player:
- *
- *   level     - the visible/current level. Increases by 1 per kill, can be
- *               reduced by the death penalty. Used for display and for
- *               deciding the death-penalty tier.
- *   peakLevel - the highest level ever reached. Drives the actual gear the
- *               player has equipped. NEVER decreases on death - this is
- *               what "keeps all current upgrades" after a death penalty.
- *
- * On a kill: level = min(level + 1, maxLevel). If level > peakLevel, the
- * player just reached new ground -> peakLevel catches up and new gear/reward
- * is granted. Otherwise the kill only restores their level counter with no
- * new reward (they're just catching back up after a prior death penalty).
- */
 public class PlayerDataManager {
 
     private final Main plugin;

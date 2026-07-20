@@ -13,8 +13,7 @@ public class ConfigManager {
     private final Main plugin;
     private FileConfiguration config;
 
-    // death-penalty tiers, sorted ascending by "up-to-level"
-    private final List<int[]> penaltyTiers = new ArrayList<>(); // [upToLevel, penaltyAmount]
+    private final List<int[]> penaltyTiers = new ArrayList<>();
     private int defaultPenalty = 2;
 
     public ConfigManager(Main plugin) {
@@ -43,12 +42,6 @@ public class ConfigManager {
         penaltyTiers.sort((a, b) -> Integer.compare(a[0], b[0]));
     }
 
-    /**
-     * Returns how many levels a player at the given peak-level should lose on death.
-     * Tiers are checked in ascending "up-to-level" order; the first tier whose
-     * up-to-level is >= the player's peak level applies. If the player's peak
-     * level exceeds every tier, the last (highest) tier's loss applies.
-     */
     public int getDeathPenaltyForLevel(int peakLevel) {
         if (penaltyTiers.isEmpty()) return defaultPenalty;
         for (int[] tier : penaltyTiers) {

@@ -64,6 +64,7 @@ public class LevelManager {
 
                 Level level = new Level(num, name, action);
 
+                level.setPiece(config.getString(path + "piece", ""));
                 switch (action) {
                     case ARROWS:
                         level.setRewardAmount(config.getInt(path + "amount", 64));
@@ -91,29 +92,40 @@ public class LevelManager {
                         break;
                 }
 
-                // cumulative gear snapshot - always present
-                level.setSwordMaterial(matOrDefault(config.getString(path + "gear.sword.material"), Material.IRON_SWORD, "SWORD"));
-                level.setSwordSharpness(config.getInt(path + "gear.sword.sharpness", 0));
-                level.setAxeMaterial(matOrDefault(config.getString(path + "gear.axe.material"), Material.IRON_AXE, "AXE"));
-                level.setAxeSharpness(config.getInt(path + "gear.axe.sharpness", 0));
-                level.setBowPower(config.getInt(path + "gear.bow.power", 0));
-                level.setBowPunch(config.getInt(path + "gear.bow.punch", 0));
-
-                level.setChestMaterial(matOrDefault(config.getString(path + "gear.chestplate.material"), Material.IRON_CHESTPLATE, "CHESTPLATE"));
-                level.setChestProtection(config.getInt(path + "gear.chestplate.protection", 0));
-                level.setChestThorns(config.getInt(path + "gear.chestplate.thorns", 0));
-
-                level.setLegsMaterial(matOrDefault(config.getString(path + "gear.leggings.material"), Material.IRON_LEGGINGS, "LEGGINGS"));
-                level.setLegsProtection(config.getInt(path + "gear.leggings.protection", 0));
-                level.setLegsThorns(config.getInt(path + "gear.leggings.thorns", 0));
-
-                level.setHelmetMaterial(matOrDefault(config.getString(path + "gear.helmet.material"), Material.IRON_HELMET, "HELMET"));
-                level.setHelmetProtection(config.getInt(path + "gear.helmet.protection", 0));
-                level.setHelmetThorns(config.getInt(path + "gear.helmet.thorns", 0));
-
-                level.setBootsMaterial(matOrDefault(config.getString(path + "gear.boots.material"), Material.IRON_BOOTS, "BOOTS"));
-                level.setBootsProtection(config.getInt(path + "gear.boots.protection", 0));
-                level.setBootsThorns(config.getInt(path + "gear.boots.thorns", 0));
+                // Only read gear fields that are explicitly defined in the config
+                String gearPath = path + "gear.";
+                if (config.isSet(gearPath + "sword.material")) {
+                    level.setSwordMaterial(matOrNull(config.getString(gearPath + "sword.material")));
+                    level.setSwordSharpness(config.getInt(gearPath + "sword.sharpness", 0));
+                }
+                if (config.isSet(gearPath + "axe.material")) {
+                    level.setAxeMaterial(matOrNull(config.getString(gearPath + "axe.material")));
+                    level.setAxeSharpness(config.getInt(gearPath + "axe.sharpness", 0));
+                }
+                if (config.isSet(gearPath + "bow.power")) {
+                    level.setBowPower(config.getInt(gearPath + "bow.power", 0));
+                    level.setBowPunch(config.getInt(gearPath + "bow.punch", 0));
+                }
+                if (config.isSet(gearPath + "chestplate.material")) {
+                    level.setChestMaterial(matOrNull(config.getString(gearPath + "chestplate.material")));
+                    level.setChestProtection(config.getInt(gearPath + "chestplate.protection", 0));
+                    level.setChestThorns(config.getInt(gearPath + "chestplate.thorns", 0));
+                }
+                if (config.isSet(gearPath + "leggings.material")) {
+                    level.setLegsMaterial(matOrNull(config.getString(gearPath + "leggings.material")));
+                    level.setLegsProtection(config.getInt(gearPath + "leggings.protection", 0));
+                    level.setLegsThorns(config.getInt(gearPath + "leggings.thorns", 0));
+                }
+                if (config.isSet(gearPath + "helmet.material")) {
+                    level.setHelmetMaterial(matOrNull(config.getString(gearPath + "helmet.material")));
+                    level.setHelmetProtection(config.getInt(gearPath + "helmet.protection", 0));
+                    level.setHelmetThorns(config.getInt(gearPath + "helmet.thorns", 0));
+                }
+                if (config.isSet(gearPath + "boots.material")) {
+                    level.setBootsMaterial(matOrNull(config.getString(gearPath + "boots.material")));
+                    level.setBootsProtection(config.getInt(gearPath + "boots.protection", 0));
+                    level.setBootsThorns(config.getInt(gearPath + "boots.thorns", 0));
+                }
 
                 levels.put(num, level);
             } catch (NumberFormatException ex) {
@@ -129,23 +141,6 @@ public class LevelManager {
         return Material.matchMaterial(s.trim().toUpperCase());
     }
 
-    private Material matOrDefault(String rawMaterialTier, Material fallback, String pieceType) {
-        if (rawMaterialTier == null) return fallback;
-        String tier = rawMaterialTier.trim().toUpperCase();
-        Material m = Material.matchMaterial(tier + "_" + pieceType);
-
-        // WOOD/GOLD have two valid spellings depending on server version
-        // (legacy 1.8-1.12: WOOD_/GOLD_, modern 1.13+: WOODEN_/GOLDEN_) -
-        // try the alternate spelling before giving up, so the same
-        // progression.yml works across the whole compat range.
-        if (m == null && tier.equals("WOOD")) m = Material.matchMaterial("WOODEN_" + pieceType);
-        if (m == null && tier.equals("WOODEN")) m = Material.matchMaterial("WOOD_" + pieceType);
-        if (m == null && tier.equals("GOLD")) m = Material.matchMaterial("GOLDEN_" + pieceType);
-        if (m == null && tier.equals("GOLDEN")) m = Material.matchMaterial("GOLD_" + pieceType);
-
-        return m != null ? m : fallback;
-    }
-
     public Level getLevel(int number) {
         return levels.get(number);
     }
@@ -158,122 +153,131 @@ public class LevelManager {
         return config;
     }
 
-    /**
-     * Finds the first progression level after the gear the player already has.
-     * A kit supplied by another plugin can therefore be used as the player's
-     * starting point without importing or depending on that plugin.
-     */
-    public int getNextLevelForGear(Player player) {
-        int highestMatchedLevel = 0;
-
-        for (int number = 1; number <= getMaxLevel(); number++) {
-            Level level = getLevel(number);
-            if (level != null && matchesGear(player, level)) {
-                highestMatchedLevel = number;
-            }
-        }
-
-        if (highestMatchedLevel <= 0) return 1;
-        return Math.min(highestMatchedLevel + 1, getMaxLevel());
-    }
-
-    private boolean matchesGear(Player player, Level level) {
-        PlayerInventory inv = player.getInventory();
-
-        return hasItem(inv, "_SWORD", level.getSwordMaterial(), level.getSwordSharpness(), GearCompat.sharpness())
-                && hasItem(inv, "_AXE", level.getAxeMaterial(), level.getAxeSharpness(), GearCompat.sharpness())
-                && hasBow(inv, level.getBowPower(), level.getBowPunch())
-                && matchesArmor(inv.getChestplate(), "_CHESTPLATE", level.getChestMaterial(), level.getChestProtection(), level.getChestThorns())
-                && matchesArmor(inv.getLeggings(), "_LEGGINGS", level.getLegsMaterial(), level.getLegsProtection(), level.getLegsThorns())
-                && matchesArmor(inv.getHelmet(), "_HELMET", level.getHelmetMaterial(), level.getHelmetProtection(), level.getHelmetThorns())
-                && matchesArmor(inv.getBoots(), "_BOOTS", level.getBootsMaterial(), level.getBootsProtection(), level.getBootsThorns());
-    }
-
-    private boolean hasItem(PlayerInventory inv, String suffix, Material requiredMaterial, int requiredEnchant, org.bukkit.enchantments.Enchantment enchantment) {
-        for (ItemStack item : inv.getContents()) {
-            if (item != null && item.getType().name().endsWith(suffix)
-                    && matchesMaterial(item.getType(), requiredMaterial)
-                    && item.getEnchantmentLevel(enchantment) >= requiredEnchant) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean hasBow(PlayerInventory inv, int requiredPower, int requiredPunch) {
-        for (ItemStack item : inv.getContents()) {
-            if (item != null && item.getType() == Material.BOW
-                    && item.getEnchantmentLevel(GearCompat.power()) >= requiredPower
-                    && item.getEnchantmentLevel(GearCompat.punch()) >= requiredPunch) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean matchesArmor(ItemStack item, String suffix, Material requiredMaterial, int requiredProtection, int requiredThorns) {
-        return item != null
-                && item.getType().name().endsWith(suffix)
-                && matchesMaterial(item.getType(), requiredMaterial)
-                && item.getEnchantmentLevel(GearCompat.protection()) >= requiredProtection
-                && item.getEnchantmentLevel(GearCompat.thorns()) >= requiredThorns;
-    }
-
-    private boolean matchesMaterial(Material actual, Material required) {
-        if (actual == null || required == null) return false;
-        return actual == required || materialTier(actual) >= materialTier(required);
-    }
-
-    private int materialTier(Material material) {
-        String name = material.name();
-        if (name.contains("NETHERITE")) return 5;
-        if (name.contains("DIAMOND")) return 4;
-        if (name.contains("IRON")) return 3;
-        if (name.contains("GOLD")) return 2;
-        if (name.contains("STONE")) return 1;
-        if (name.contains("WOOD") || name.contains("LEATHER")) return 0;
-        return -1;
-    }
-
-    /**
-     * Applies the gear snapshot for the given level (sword/axe/armor/bow) to the
-     * player, replacing whatever they currently have equipped in those slots.
-     * This does NOT touch consumables (apples/pearls/potions/arrows) - those
-     * are only granted once, at the moment the level is first reached
-     * (see {@link #giveLevelReward}).
-     */
-    public void applyGear(Player player, Level level) {
+    public void applyCumulativeGear(Player player, int upToLevel) {
         PlayerInventory inv = player.getInventory();
 
         removeItemType(inv, "_SWORD");
         removeItemType(inv, "_AXE");
         removeExactMaterial(inv, Material.BOW);
+        inv.setHelmet(null);
+        inv.setChestplate(null);
+        inv.setLeggings(null);
+        inv.setBoots(null);
 
-        ItemStack sword = new ItemStack(level.getSwordMaterial());
-        if (level.getSwordSharpness() > 0) sword.addUnsafeEnchantment(GearCompat.sharpness(), level.getSwordSharpness());
-        inv.addItem(sword);
+        Material swordMat = null;
+        int swordSharp = 0;
+        Material axeMat = null;
+        int axeSharp = 0;
+        int bowPower = 0;
+        int bowPunch = 0;
+        Material chestMat = null;
+        int chestProt = 0;
+        int chestThorns = 0;
+        Material legsMat = null;
+        int legsProt = 0;
+        int legsThorns = 0;
+        Material helmMat = null;
+        int helmProt = 0;
+        int helmThorns = 0;
+        Material bootsMat = null;
+        int bootsProt = 0;
+        int bootsThorns = 0;
 
-        ItemStack axe = new ItemStack(level.getAxeMaterial());
-        if (level.getAxeSharpness() > 0) axe.addUnsafeEnchantment(GearCompat.sharpness(), level.getAxeSharpness());
-        inv.addItem(axe);
+        for (int i = 1; i <= upToLevel; i++) {
+            Level lvl = getLevel(i);
+            if (lvl == null) continue;
 
-        inv.setHelmet(buildArmor(level.getHelmetMaterial(), level.getHelmetProtection(), level.getHelmetThorns()));
-        inv.setChestplate(buildArmor(level.getChestMaterial(), level.getChestProtection(), level.getChestThorns()));
-        inv.setLeggings(buildArmor(level.getLegsMaterial(), level.getLegsProtection(), level.getLegsThorns()));
-        inv.setBoots(buildArmor(level.getBootsMaterial(), level.getBootsProtection(), level.getBootsThorns()));
+            if (lvl.getSwordMaterial() != null) {
+                swordMat = lvl.getSwordMaterial();
+                swordSharp = lvl.getSwordSharpness();
+            }
+            if (lvl.getAxeMaterial() != null) {
+                axeMat = lvl.getAxeMaterial();
+                axeSharp = lvl.getAxeSharpness();
+            }
+            if (lvl.getBowPower() > 0 || lvl.getBowPunch() > 0) {
+                bowPower = lvl.getBowPower();
+                bowPunch = lvl.getBowPunch();
+            }
+            if (lvl.getChestMaterial() != null) {
+                chestMat = lvl.getChestMaterial();
+                chestProt = lvl.getChestProtection();
+                chestThorns = lvl.getChestThorns();
+            }
+            if (lvl.getLegsMaterial() != null) {
+                legsMat = lvl.getLegsMaterial();
+                legsProt = lvl.getLegsProtection();
+                legsThorns = lvl.getLegsThorns();
+            }
+            if (lvl.getHelmetMaterial() != null) {
+                helmMat = lvl.getHelmetMaterial();
+                helmProt = lvl.getHelmetProtection();
+                helmThorns = lvl.getHelmetThorns();
+            }
+            if (lvl.getBootsMaterial() != null) {
+                bootsMat = lvl.getBootsMaterial();
+                bootsProt = lvl.getBootsProtection();
+                bootsThorns = lvl.getBootsThorns();
+            }
+        }
+
+        if (swordMat != null) {
+            ItemStack sword = new ItemStack(swordMat);
+            if (swordSharp > 0) sword.addUnsafeEnchantment(GearCompat.sharpness(), swordSharp);
+            inv.addItem(sword);
+        }
+        if (axeMat != null) {
+            ItemStack axe = new ItemStack(axeMat);
+            if (axeSharp > 0) axe.addUnsafeEnchantment(GearCompat.sharpness(), axeSharp);
+            inv.addItem(axe);
+        }
+        if (helmMat != null) inv.setHelmet(buildArmor(helmMat, helmProt, helmThorns));
+        if (chestMat != null) inv.setChestplate(buildArmor(chestMat, chestProt, chestThorns));
+        if (legsMat != null) inv.setLeggings(buildArmor(legsMat, legsProt, legsThorns));
+        if (bootsMat != null) inv.setBoots(buildArmor(bootsMat, bootsProt, bootsThorns));
 
         ItemStack bow = new ItemStack(Material.BOW);
-        if (level.getBowPower() > 0) bow.addUnsafeEnchantment(GearCompat.power(), level.getBowPower());
-        if (level.getBowPunch() > 0) bow.addUnsafeEnchantment(GearCompat.punch(), level.getBowPunch());
+        if (bowPower > 0) bow.addUnsafeEnchantment(GearCompat.power(), bowPower);
+        if (bowPunch > 0) bow.addUnsafeEnchantment(GearCompat.punch(), bowPunch);
         inv.addItem(bow);
     }
 
-    /**
-     * Grants the one-time reward tied to reaching this level (item / arrows /
-     * potion / final bundle). Gear-related actions (GIVE_WEAPON, GIVE_ARMOR,
-     * GIVE_BOW, enchant actions, thorns) don't need a separate reward call
-     * since applyGear already reflects them.
-     */
+    public void applyDeltaGear(Player player, Level level) {
+        PlayerInventory inv = player.getInventory();
+
+        if (level.getSwordMaterial() != null) {
+            removeItemType(inv, "_SWORD");
+            ItemStack sword = new ItemStack(level.getSwordMaterial());
+            if (level.getSwordSharpness() > 0) sword.addUnsafeEnchantment(GearCompat.sharpness(), level.getSwordSharpness());
+            inv.addItem(sword);
+        }
+        if (level.getAxeMaterial() != null) {
+            removeItemType(inv, "_AXE");
+            ItemStack axe = new ItemStack(level.getAxeMaterial());
+            if (level.getAxeSharpness() > 0) axe.addUnsafeEnchantment(GearCompat.sharpness(), level.getAxeSharpness());
+            inv.addItem(axe);
+        }
+        if (level.getChestMaterial() != null) {
+            inv.setChestplate(buildArmor(level.getChestMaterial(), level.getChestProtection(), level.getChestThorns()));
+        }
+        if (level.getLegsMaterial() != null) {
+            inv.setLeggings(buildArmor(level.getLegsMaterial(), level.getLegsProtection(), level.getLegsThorns()));
+        }
+        if (level.getHelmetMaterial() != null) {
+            inv.setHelmet(buildArmor(level.getHelmetMaterial(), level.getHelmetProtection(), level.getHelmetThorns()));
+        }
+        if (level.getBootsMaterial() != null) {
+            inv.setBoots(buildArmor(level.getBootsMaterial(), level.getBootsProtection(), level.getBootsThorns()));
+        }
+        if (level.getBowPower() > 0 || level.getBowPunch() > 0) {
+            removeExactMaterial(inv, Material.BOW);
+            ItemStack bow = new ItemStack(Material.BOW);
+            if (level.getBowPower() > 0) bow.addUnsafeEnchantment(GearCompat.power(), level.getBowPower());
+            if (level.getBowPunch() > 0) bow.addUnsafeEnchantment(GearCompat.punch(), level.getBowPunch());
+            inv.addItem(bow);
+        }
+    }
+
     public void giveLevelReward(Player player, Level level) {
         PlayerInventory inv = player.getInventory();
 
@@ -299,11 +303,49 @@ public class LevelManager {
         }
     }
 
-    /**
-     * Called on every kill once a player is already at max level, to simulate
-     * "unlimited" supplies by topping stacks back up (see progression.yml ->
-     * final level -> resupply-* settings).
-     */
+    public void applyGear(Player player, Level level) {
+        applyCumulativeGear(player, level.getNumber());
+    }
+
+    public int getNextLevelForGear(Player player) {
+        // Scan player's gear and find the highest matching level
+        PlayerInventory inv = player.getInventory();
+        int best = 0;
+        for (int i = 1; i <= getMaxLevel(); i++) {
+            Level lvl = getLevel(i);
+            if (lvl == null) continue;
+            if (lvl.getSwordMaterial() != null) {
+                ItemStack sword = getItemBySuffix(inv, "_SWORD");
+                if (sword == null || sword.getType() != lvl.getSwordMaterial()) continue;
+            }
+            if (lvl.getHelmetMaterial() != null) {
+                ItemStack helm = inv.getHelmet();
+                if (helm == null || helm.getType() != lvl.getHelmetMaterial()) continue;
+            }
+            if (lvl.getChestMaterial() != null) {
+                ItemStack chest = inv.getChestplate();
+                if (chest == null || chest.getType() != lvl.getChestMaterial()) continue;
+            }
+            if (lvl.getLegsMaterial() != null) {
+                ItemStack legs = inv.getLeggings();
+                if (legs == null || legs.getType() != lvl.getLegsMaterial()) continue;
+            }
+            if (lvl.getBootsMaterial() != null) {
+                ItemStack boots = inv.getBoots();
+                if (boots == null || boots.getType() != lvl.getBootsMaterial()) continue;
+            }
+            best = i;
+        }
+        return best + 1;
+    }
+
+    private ItemStack getItemBySuffix(PlayerInventory inv, String suffix) {
+        for (ItemStack item : inv.getContents()) {
+            if (item != null && item.getType().name().endsWith(suffix)) return item;
+        }
+        return null;
+    }
+
     public void resupplyIfMaxLevel(Player player) {
         Level finalLevel = getLevel(getMaxLevel());
         if (finalLevel == null || finalLevel.getAction() != Level.Action.FINAL || !finalLevel.isResupplyOnKill()) return;
@@ -328,7 +370,7 @@ public class LevelManager {
 
     private void topUpHarmingArrows(PlayerInventory inv, int harmingLevel, int targetAmount) {
         Material tipped = Material.matchMaterial("TIPPED_ARROW");
-        if (tipped == null) return; // pre-1.9 server - nothing to top up
+        if (tipped == null) return;
 
         int current = 0;
         for (ItemStack item : inv.getContents()) {

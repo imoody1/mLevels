@@ -19,6 +19,7 @@ public class Level {
     private final Action action;
 
     // action-specific fields (only relevant ones are populated depending on Action)
+    private String piece;
     private Material rewardMaterial;
     private int rewardAmount;
     private String potionEffectKey;   // e.g. "jump_boost", "strength", "speed"
@@ -60,6 +61,9 @@ public class Level {
         this.name = name;
         this.action = action;
     }
+
+    public String getPiece() { return piece; }
+    public void setPiece(String piece) { this.piece = piece; }
 
     public int getNumber() { return number; }
     public String getName() { return name; }
@@ -134,4 +138,9 @@ public class Level {
     public void setBootsProtection(int v) { this.bootsProtection = v; }
     public int getBootsThorns() { return bootsThorns; }
     public void setBootsThorns(int v) { this.bootsThorns = v; }
+
+    public boolean hasAnyGear() {
+        return swordMaterial != null || axeMaterial != null || bowPower > 0 || bowPunch > 0
+                || chestMaterial != null || legsMaterial != null || helmetMaterial != null || bootsMaterial != null;
+    }
 }
