@@ -43,6 +43,7 @@ public class Level {
     private int axeSharpness;
     private int bowPower;
     private int bowPunch;
+    private boolean bowDefined; // true if this level explicitly sets bow gear (even if power/punch are still 0)
     private Material chestMaterial;
     private int chestProtection;
     private int chestThorns;
@@ -110,6 +111,8 @@ public class Level {
     public void setBowPower(int v) { this.bowPower = v; }
     public int getBowPunch() { return bowPunch; }
     public void setBowPunch(int v) { this.bowPunch = v; }
+    public boolean isBowDefined() { return bowDefined; }
+    public void setBowDefined(boolean v) { this.bowDefined = v; }
 
     public Material getChestMaterial() { return chestMaterial; }
     public void setChestMaterial(Material m) { this.chestMaterial = m; }
@@ -140,7 +143,7 @@ public class Level {
     public void setBootsThorns(int v) { this.bootsThorns = v; }
 
     public boolean hasAnyGear() {
-        return swordMaterial != null || axeMaterial != null || bowPower > 0 || bowPunch > 0
+        return swordMaterial != null || axeMaterial != null || bowDefined
                 || chestMaterial != null || legsMaterial != null || helmetMaterial != null || bootsMaterial != null;
     }
 }

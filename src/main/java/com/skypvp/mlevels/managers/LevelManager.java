@@ -105,6 +105,7 @@ public class LevelManager {
                 if (config.isSet(gearPath + "bow.power")) {
                     level.setBowPower(config.getInt(gearPath + "bow.power", 0));
                     level.setBowPunch(config.getInt(gearPath + "bow.punch", 0));
+                    level.setBowDefined(true);
                 }
                 if (config.isSet(gearPath + "chestplate.material")) {
                     level.setChestMaterial(matOrNull(config.getString(gearPath + "chestplate.material")));
@@ -168,6 +169,7 @@ public class LevelManager {
         int swordSharp = 0;
         Material axeMat = null;
         int axeSharp = 0;
+        boolean bowGiven = false;
         int bowPower = 0;
         int bowPunch = 0;
         Material chestMat = null;
@@ -195,7 +197,8 @@ public class LevelManager {
                 axeMat = lvl.getAxeMaterial();
                 axeSharp = lvl.getAxeSharpness();
             }
-            if (lvl.getBowPower() > 0 || lvl.getBowPunch() > 0) {
+            if (lvl.isBowDefined()) {
+                bowGiven = true;
                 bowPower = lvl.getBowPower();
                 bowPunch = lvl.getBowPunch();
             }
@@ -236,10 +239,12 @@ public class LevelManager {
         if (legsMat != null) inv.setLeggings(buildArmor(legsMat, legsProt, legsThorns));
         if (bootsMat != null) inv.setBoots(buildArmor(bootsMat, bootsProt, bootsThorns));
 
-        ItemStack bow = new ItemStack(Material.BOW);
-        if (bowPower > 0) bow.addUnsafeEnchantment(GearCompat.power(), bowPower);
-        if (bowPunch > 0) bow.addUnsafeEnchantment(GearCompat.punch(), bowPunch);
-        inv.addItem(bow);
+        if (bowGiven) {
+            ItemStack bow = new ItemStack(Material.BOW);
+            if (bowPower > 0) bow.addUnsafeEnchantment(GearCompat.power(), bowPower);
+            if (bowPunch > 0) bow.addUnsafeEnchantment(GearCompat.punch(), bowPunch);
+            inv.addItem(bow);
+        }
     }
 
     public void applyDeltaGear(Player player, Level level) {
@@ -269,7 +274,7 @@ public class LevelManager {
         if (level.getBootsMaterial() != null) {
             inv.setBoots(buildArmor(level.getBootsMaterial(), level.getBootsProtection(), level.getBootsThorns()));
         }
-        if (level.getBowPower() > 0 || level.getBowPunch() > 0) {
+        if (level.isBowDefined()) {
             removeExactMaterial(inv, Material.BOW);
             ItemStack bow = new ItemStack(Material.BOW);
             if (level.getBowPower() > 0) bow.addUnsafeEnchantment(GearCompat.power(), level.getBowPower());
