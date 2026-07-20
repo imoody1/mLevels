@@ -1,9 +1,9 @@
 name: mLevels
-version: '1.0.0'
+version: '1.2'
 main: com.skypvp.mlevels.Main
 author: Moody - _Yasta
-description: "Configable Gear leveling system"
-softdepend: [PlaceholderAPI]
+description: "A Configurable Gear Leveling System Plugin."
+softdepend: [PlaceholderAPI, PlayerKits2]
 
 commands:
   mlevels:
@@ -18,7 +18,3 @@ permissions:
   mlevels.admin:
     description: "Permission to manage the plugin (reload/set/add/remove/reset)"
     default: op
-  # Rank permissions (rank.vip, rank.vipplus, rank.elite, etc.) are NOT
-  # declared here on purpose - they are fully custom and defined by you in
-  # config.yml under rank-kits, so use whatever permission nodes your
-  # permissions plugin (LuckPerms, etc.) already has set up.

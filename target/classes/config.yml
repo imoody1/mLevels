@@ -3,45 +3,7 @@
 # ==================================================
 
 general:
-  # When should a player receive their rank kit command?
-  # "on-respawn" -> right after respawning (recommended)
-  # "on-death"   -> the instant they die, before respawn
-  kit-give-timing: "on-respawn"
   broadcast-level-up: true
-
-# ==================================================
-#   Starter kit - given to players with no rank permission and no progress yet
-# ==================================================
-starter-kit:
-  command: "kit starter %player%"
-
-# ==================================================
-#   Rank kits - permission + command only. The plugin checks permissions on
-#   respawn/death and runs the matching command through the console, so you
-#   can hook into ANY kits plugin you already use (ExtremeKits, KitsX, Kits...)
-#   Use %player% or {player} inside the command for the player's name.
-#
-#   If a player has more than one rank permission, only the HIGHEST PRIORITY
-#   one (see rank-priority below) is used.
-# ==================================================
-rank-kits:
-  vip:
-    permission: "rank.vip"
-    command: "kit vip %player%"
-
-  vipplus:
-    permission: "rank.vipplus"
-    command: "kit vipplus %player%"
-
-  elite:
-    permission: "rank.elite"
-    command: "kit elite %player%"
-
-# Priority order - highest rank first. First permission match wins.
-rank-priority:
-  - "elite"
-  - "vipplus"
-  - "vip"
 
 # ==================================================
 #   Death Penalty - how many LEVELS a player loses on death, based on how
@@ -50,9 +12,9 @@ rank-priority:
 #   player's peak level is less than or equal to this number".
 #
 #   Default rules:
-#     Tier 1: level 1  -> before first Diamond item (level 44)   = lose 2
-#     Tier 2: level 44 -> before Diamond Protection III (level 82) = lose 3
-#     Tier 3: level 82 and beyond                                  = lose 4
+#     Tier 1: level 1  -> before first Diamond item (level 45)   = lose 2
+#     Tier 2: level 45 -> before Diamond Protection III (level 83) = lose 3
+#     Tier 3: level 83 and beyond                                  = lose 4
 #
 #   NOTE: losing levels only reduces the visible level counter and affects
 #   the NEXT death-penalty tier lookup. It never strips away gear the player
@@ -62,14 +24,34 @@ death-penalty:
   default-loss: 2
   tiers:
     tier1:
-      up-to-level: 43
+      up-to-level: 44
       levels-lost: 2
     tier2:
-      up-to-level: 81
+      up-to-level: 82
       levels-lost: 3
     tier3:
       up-to-level: 999999
       levels-lost: 4
+
+rank-kits:
+  enabled: true
+  command: "playerkits2 claim {kit}"
+  ranks:
+    custom:
+      permission: "group.custom"
+      kit: "custom"
+    revon:
+      permission: "group.revon"
+      kit: "revon"
+    turbo:
+      permission: "group.turbo"
+      kit: "turbo"
+    elite:
+      permission: "group.elite"
+      kit: "elite"
+    vip:
+      permission: "group.vip"
+      kit: "vip"
 
 messages:
   prefix: "&8[&6mLevels&8] &r"

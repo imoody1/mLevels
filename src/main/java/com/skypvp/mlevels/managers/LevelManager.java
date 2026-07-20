@@ -131,7 +131,18 @@ public class LevelManager {
 
     private Material matOrDefault(String rawMaterialTier, Material fallback, String pieceType) {
         if (rawMaterialTier == null) return fallback;
-        Material m = Material.matchMaterial(rawMaterialTier.trim().toUpperCase() + "_" + pieceType);
+        String tier = rawMaterialTier.trim().toUpperCase();
+        Material m = Material.matchMaterial(tier + "_" + pieceType);
+
+        // WOOD/GOLD have two valid spellings depending on server version
+        // (legacy 1.8-1.12: WOOD_/GOLD_, modern 1.13+: WOODEN_/GOLDEN_) -
+        // try the alternate spelling before giving up, so the same
+        // progression.yml works across the whole compat range.
+        if (m == null && tier.equals("WOOD")) m = Material.matchMaterial("WOODEN_" + pieceType);
+        if (m == null && tier.equals("WOODEN")) m = Material.matchMaterial("WOOD_" + pieceType);
+        if (m == null && tier.equals("GOLD")) m = Material.matchMaterial("GOLDEN_" + pieceType);
+        if (m == null && tier.equals("GOLDEN")) m = Material.matchMaterial("GOLD_" + pieceType);
+
         return m != null ? m : fallback;
     }
 
@@ -145,6 +156,83 @@ public class LevelManager {
 
     public FileConfiguration getConfig() {
         return config;
+    }
+
+    /**
+     * Finds the first progression level after the gear the player already has.
+     * A kit supplied by another plugin can therefore be used as the player's
+     * starting point without importing or depending on that plugin.
+     */
+    public int getNextLevelForGear(Player player) {
+        int highestMatchedLevel = 0;
+
+        for (int number = 1; number <= getMaxLevel(); number++) {
+            Level level = getLevel(number);
+            if (level != null && matchesGear(player, level)) {
+                highestMatchedLevel = number;
+            }
+        }
+
+        if (highestMatchedLevel <= 0) return 1;
+        return Math.min(highestMatchedLevel + 1, getMaxLevel());
+    }
+
+    private boolean matchesGear(Player player, Level level) {
+        PlayerInventory inv = player.getInventory();
+
+        return hasItem(inv, "_SWORD", level.getSwordMaterial(), level.getSwordSharpness(), GearCompat.sharpness())
+                && hasItem(inv, "_AXE", level.getAxeMaterial(), level.getAxeSharpness(), GearCompat.sharpness())
+                && hasBow(inv, level.getBowPower(), level.getBowPunch())
+                && matchesArmor(inv.getChestplate(), "_CHESTPLATE", level.getChestMaterial(), level.getChestProtection(), level.getChestThorns())
+                && matchesArmor(inv.getLeggings(), "_LEGGINGS", level.getLegsMaterial(), level.getLegsProtection(), level.getLegsThorns())
+                && matchesArmor(inv.getHelmet(), "_HELMET", level.getHelmetMaterial(), level.getHelmetProtection(), level.getHelmetThorns())
+                && matchesArmor(inv.getBoots(), "_BOOTS", level.getBootsMaterial(), level.getBootsProtection(), level.getBootsThorns());
+    }
+
+    private boolean hasItem(PlayerInventory inv, String suffix, Material requiredMaterial, int requiredEnchant, org.bukkit.enchantments.Enchantment enchantment) {
+        for (ItemStack item : inv.getContents()) {
+            if (item != null && item.getType().name().endsWith(suffix)
+                    && matchesMaterial(item.getType(), requiredMaterial)
+                    && item.getEnchantmentLevel(enchantment) >= requiredEnchant) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean hasBow(PlayerInventory inv, int requiredPower, int requiredPunch) {
+        for (ItemStack item : inv.getContents()) {
+            if (item != null && item.getType() == Material.BOW
+                    && item.getEnchantmentLevel(GearCompat.power()) >= requiredPower
+                    && item.getEnchantmentLevel(GearCompat.punch()) >= requiredPunch) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean matchesArmor(ItemStack item, String suffix, Material requiredMaterial, int requiredProtection, int requiredThorns) {
+        return item != null
+                && item.getType().name().endsWith(suffix)
+                && matchesMaterial(item.getType(), requiredMaterial)
+                && item.getEnchantmentLevel(GearCompat.protection()) >= requiredProtection
+                && item.getEnchantmentLevel(GearCompat.thorns()) >= requiredThorns;
+    }
+
+    private boolean matchesMaterial(Material actual, Material required) {
+        if (actual == null || required == null) return false;
+        return actual == required || materialTier(actual) >= materialTier(required);
+    }
+
+    private int materialTier(Material material) {
+        String name = material.name();
+        if (name.contains("NETHERITE")) return 5;
+        if (name.contains("DIAMOND")) return 4;
+        if (name.contains("IRON")) return 3;
+        if (name.contains("GOLD")) return 2;
+        if (name.contains("STONE")) return 1;
+        if (name.contains("WOOD") || name.contains("LEATHER")) return 0;
+        return -1;
     }
 
     /**

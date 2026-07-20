@@ -166,12 +166,12 @@ public class MLevelsCommand implements CommandExecutor, TabCompleter {
                 plugin.getPlayerDataManager().reset(uuid);
                 if (target.isOnline()) {
                     Player online = (Player) target;
-                    // strip existing sword/axe/armor since progress is gone, then give starter kit
+                    // strip existing sword/axe/armor since progress is gone, then give the starter/rank kit
                     online.getInventory().setHelmet(null);
                     online.getInventory().setChestplate(null);
                     online.getInventory().setLeggings(null);
                     online.getInventory().setBoots(null);
-                    plugin.getKitManager().giveKitFor(online);
+                    plugin.getGearListener().grantStarterKit(online);
                 }
                 sender.sendMessage(plugin.getConfigManager().msg("level-reset")
                         .replace("{player}", args[1]));

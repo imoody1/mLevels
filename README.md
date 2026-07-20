@@ -1,9 +1,9 @@
 # mLevels - Progression / Leveling System for SkyPvP
 
 Full config-driven leveling system: kill = +1 level, every level grants
-exactly one upgrade or item reward, gear is never lost on death (only the
-visible level counter drops), and rank kits are handled entirely through
-config-defined commands.
+exactly one upgrade or item reward, and gear is never lost on death (only
+the visible level counter drops). Level 1 is a self-contained starter kit -
+no external kits plugin needed.
 
 ## Version support: 1.8 - 1.21.11+
 The plugin auto-detects the server's Minecraft version at runtime and picks
@@ -36,7 +36,11 @@ mvn clean package
 Output: `target/mLevels.jar`
 
 ## How leveling works
-- Every level (1-118 by default) is **exactly one action**: give a weapon,
+- **Level 1 is the default starter kit**: Leather armor (chestplate, leggings,
+  helmet, boots), a Wood Sword, a Wood Axe, a plain Bow, and 1 Golden Apple.
+  Every player starts here automatically on first join - no external kits
+  plugin or permissions needed.
+- Every level (1-119 by default) is **exactly one action**: give a weapon,
   give an armor piece, add an enchant level, give a potion, give items
   (golden apples / ender pearls / arrows), or a Thorns upgrade.
 - The plugin tracks TWO numbers per player:
@@ -47,9 +51,9 @@ Output: `target/mLevels.jar`
   upgrade for that level. If you're just catching back up after a death
   penalty, the counter goes up but you don't get a duplicate reward (you
   already have that gear).
-- At max level (118), every further kill just tops your golden apples /
+- At max level (119), every further kill just tops your golden apples /
   enchanted golden apples / arrows / Harming II arrows back up to simulate
-  "unlimited" supply (see `progression.yml` -> level 118 -> `resupply-*`).
+  "unlimited" supply (see `progression.yml` -> level 119 -> `resupply-*`).
 
 > Note: true infinite items aren't a real Minecraft mechanic, so "unlimited"
 > here means auto-resupply on every kill once you're maxed out. Adjust the
@@ -62,29 +66,11 @@ Output: `target/mLevels.jar`
   arrows, potions, food, etc.) drops normally like vanilla Minecraft.
 - A death penalty then reduces the **level counter** (not gear) based on
   configurable tiers in `config.yml` -> `death-penalty`:
-  - Tier 1 (level ≤ 43, before first Diamond item): lose 2 levels
-  - Tier 2 (level ≤ 81, before Diamond Protection III): lose 3 levels
+  - Tier 1 (level ≤ 44, before first Diamond item): lose 2 levels
+  - Tier 2 (level ≤ 82, before Diamond Protection III): lose 3 levels
   - Tier 3 (beyond that): lose 4 levels
 - On respawn, the plugin always makes sure you have your earned sword/axe/
   armor back (matching your peak level), even though the counter dropped.
-
-## Rank kits
-Rank kits are now just **permission + command** - nothing else. The plugin
-runs your command through the console (so it works with any kits plugin you
-already use, like ExtremeKits/KitsX/Kits):
-
-```yaml
-rank-kits:
-  vip:
-    permission: "rank.vip"
-    command: "kit vip %player%"
-```
-
-Flow on every respawn (or death, per `general.kit-give-timing`):
-1. The plugin checks your permissions (highest priority in `rank-priority` wins)
-2. Runs that rank's kit command (or the starter-kit command if no rank matches)
-3. **Then** re-applies your earned progression gear (sword/axe/armor) on top,
-   1 tick later, so it's never silently skipped or overwritten by the kit command.
 
 ## Commands
 - `/level [player]` - shows current level / peak level
@@ -101,12 +87,12 @@ Aliases for the admin command: `/mlvl`, `/levelup`
 - `%mlevels_level%` - current level (drops on death)
 - `%mlevels_peak%` - peak level (drives actual gear, never drops)
 - `%mlevels_stage%` - current level's name
-- `%mlevels_maxlevel%` - max level (118 by default)
+- `%mlevels_maxlevel%` - max level (119 by default)
 - `%mlevels_progress%` - progress percentage based on peak level
 
 ## Config files
-- `config.yml` - starter kit, rank kits, rank priority, death-penalty tiers, all messages
-- `progression.yml` - all 118 levels: action type, item/potion/enchant amounts,
+- `config.yml` - death-penalty tiers, broadcast toggle, all messages
+- `progression.yml` - all 119 levels: action type, item/potion/enchant amounts,
   and the cumulative gear snapshot for that level. Every number is editable.
 
 ## Configuration notes

@@ -4,7 +4,6 @@ import com.skypvp.mlevels.commands.LevelCommand;
 import com.skypvp.mlevels.commands.MLevelsCommand;
 import com.skypvp.mlevels.listeners.GearListener;
 import com.skypvp.mlevels.managers.ConfigManager;
-import com.skypvp.mlevels.managers.KitManager;
 import com.skypvp.mlevels.managers.LevelManager;
 import com.skypvp.mlevels.managers.PlayerDataManager;
 import com.skypvp.mlevels.placeholder.MLevelsExpansion;
@@ -17,8 +16,8 @@ public class Main extends JavaPlugin {
 
     private ConfigManager configManager;
     private LevelManager levelManager;
-    private KitManager kitManager;
     private PlayerDataManager playerDataManager;
+    private GearListener gearListener;
 
     @Override
     public void onEnable() {
@@ -29,10 +28,10 @@ public class Main extends JavaPlugin {
 
         this.configManager = new ConfigManager(this);
         this.levelManager = new LevelManager(this);
-        this.kitManager = new KitManager(this);
         this.playerDataManager = new PlayerDataManager(this);
 
-        getServer().getPluginManager().registerEvents(new GearListener(this), this);
+        this.gearListener = new GearListener(this);
+        getServer().getPluginManager().registerEvents(gearListener, this);
 
         MLevelsCommand adminCmd = new MLevelsCommand(this);
         getCommand("mlevels").setExecutor(adminCmd);
@@ -62,7 +61,6 @@ public class Main extends JavaPlugin {
         reloadConfig();
         this.configManager.reload();
         this.levelManager.reload();
-        this.kitManager.reload();
     }
 
     public static Main getInstance() {
@@ -77,11 +75,11 @@ public class Main extends JavaPlugin {
         return levelManager;
     }
 
-    public KitManager getKitManager() {
-        return kitManager;
-    }
-
     public PlayerDataManager getPlayerDataManager() {
         return playerDataManager;
+    }
+
+    public GearListener getGearListener() {
+        return gearListener;
     }
 }

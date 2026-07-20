@@ -50,11 +50,6 @@ public class GearListener implements Listener {
         // the player's actual gear/peak-level is never rolled back).
         applyDeathPenalty(victim);
 
-        // Rank-kit command timing: "on-death" fires right here
-        if ("on-death".equalsIgnoreCase(plugin.getConfigManager().getKitTiming())) {
-            plugin.getKitManager().giveKitFor(victim);
-        }
-
         // Give the killer a level up
         if (killer != null && !killer.getUniqueId().equals(victimId)) {
             levelUp(killer);
@@ -138,43 +133,99 @@ public class GearListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+        Bukkit.getScheduler().runTask(plugin, () -> initializePlayerGear(player));
+    }
+
+    private void initializePlayerGear(Player player) {
         int peakLevel = plugin.getPlayerDataManager().getPeakLevel(player.getUniqueId());
 
         if (peakLevel <= 0) {
-            // Brand new player - just give them the starter/rank kit, no progression gear yet
-            plugin.getKitManager().giveKitFor(player);
-        } else {
-            // Returning player - make sure their earned progression gear is present
-            Level level = plugin.getLevelManager().getLevel(peakLevel);
-            if (level != null) {
-                plugin.getLevelManager().applyGear(player, level);
+            int nextLevel = plugin.getLevelManager().getNextLevelForGear(player);
+            if (nextLevel > 1) {
+                startFromExistingGear(player, nextLevel);
+            } else {
+                grantStarterKit(player);
             }
+            return;
+        }
+
+        // Returning player with existing progress - just continue from
+        // wherever they already are, never reset.
+        Level level = plugin.getLevelManager().getLevel(peakLevel);
+        if (level != null) {
+            plugin.getLevelManager().applyGear(player, level);
         }
     }
 
     /**
-     * Order matters here:
-     *   1) run the rank-kit command (base loadout from an external kits plugin)
-     *   2) then re-apply the player's earned progression gear (sword/axe/
-     *      armor matching their peak level) on top, so it always reflects
-     *      their current level regardless of what the kit command gave.
+     * Brand new player setup - level 1 in progression.yml IS the starter kit
+     * (leather armor, wood sword/axe, plain bow, 1 golden apple). No rank
+     * or permission checks - everyone starts the same and progresses purely
+     * by killing.
      */
+    public void grantStarterKit(Player player) {
+        UUID id = player.getUniqueId();
+        plugin.getPlayerDataManager().setLevel(id, 1);
+        plugin.getPlayerDataManager().setPeakLevel(id, 1);
+
+        Level starter = plugin.getLevelManager().getLevel(1);
+        if (starter != null) {
+            plugin.getLevelManager().applyGear(player, starter);
+            plugin.getLevelManager().giveLevelReward(player, starter);
+        }
+    }
+
+    private void startFromExistingGear(Player player, int nextLevel) {
+        UUID id = player.getUniqueId();
+        int currentLevel = Math.max(1, nextLevel - 1);
+        plugin.getPlayerDataManager().setLevel(id, currentLevel);
+        plugin.getPlayerDataManager().setPeakLevel(id, currentLevel);
+
+        Level next = plugin.getLevelManager().getLevel(nextLevel);
+        if (next != null) {
+            plugin.getLevelManager().applyGear(player, next);
+            plugin.getPlayerDataManager().setLevel(id, nextLevel);
+            plugin.getPlayerDataManager().setPeakLevel(id, nextLevel);
+            plugin.getLevelManager().giveLevelReward(player, next);
+        }
+    }
+
     private void handleRespawnGear(Player player) {
         int peakLevel = plugin.getPlayerDataManager().getPeakLevel(player.getUniqueId());
 
-        if ("on-respawn".equalsIgnoreCase(plugin.getConfigManager().getKitTiming())) {
-            plugin.getKitManager().giveKitFor(player);
-        }
-
         if (peakLevel <= 0) {
-            return; // no progression gear earned yet - the kit command above is all they get
+            // Safety net - should already be set to 1 on join, but never leave
+            // a player with no gear at all.
+            grantStarterKit(player);
+            return;
         }
 
         Level level = plugin.getLevelManager().getLevel(peakLevel);
         if (level != null) {
-            // Run one tick later so it always applies AFTER the kit command's
-            // items have been given (kit commands can have their own delays).
-            Bukkit.getScheduler().runTaskLater(plugin, () -> plugin.getLevelManager().applyGear(player, level), 2L);
+            plugin.getLevelManager().applyGear(player, level);
+        }
+
+        giveRankKit(player);
+    }
+
+    private void giveRankKit(Player player) {
+        if (!Bukkit.getPluginManager().isPluginEnabled("PlayerKits2")
+                || !plugin.getConfig().getBoolean("rank-kits.enabled", true)) {
+            return;
+        }
+
+        String[] ranks = {"custom", "revon", "turbo", "elite", "vip"};
+        for (String rank : ranks) {
+            String permission = plugin.getConfig().getString("rank-kits.ranks." + rank + ".permission", "group." + rank);
+            if (permission == null || !player.hasPermission(permission)) {
+                continue;
+            }
+
+            String kit = plugin.getConfig().getString("rank-kits.ranks." + rank + ".kit", rank);
+            String command = plugin.getConfig().getString("rank-kits.command", "playerkits2 claim {kit}")
+                    .replace("{kit}", kit == null ? rank : kit);
+            player.performCommand(command);
+            return;
         }
     }
 }

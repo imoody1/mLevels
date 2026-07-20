@@ -65,10 +65,6 @@ public class ConfigManager {
         return config.getBoolean("general.broadcast-level-up", true);
     }
 
-    public String getKitTiming() {
-        return config.getString("general.kit-give-timing", "on-respawn");
-    }
-
     public String msg(String path) {
         String prefix = color(config.getString("messages.prefix", ""));
         String raw = config.getString("messages." + path, "");

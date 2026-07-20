@@ -12,7 +12,7 @@ import org.bukkit.OfflinePlayer;
  *   %mlevels_level%     -> current level number (e.g. 7)
  *   %mlevels_peak%      -> highest level ever reached (drives actual gear)
  *   %mlevels_stage%     -> current level's name (e.g. "Diamond Sword Sharpness III")
- *   %mlevels_maxlevel%  -> max possible level (118 by default)
+ *   %mlevels_maxlevel%  -> max possible level (119 by default)
  *   %mlevels_progress%  -> progress percentage (e.g. 34%)
  *
  * Note: the level updates live with every kill/death.
