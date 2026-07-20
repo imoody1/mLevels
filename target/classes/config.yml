@@ -1,25 +1,6 @@
-# ==================================================
-#                  mLevels - config.yml
-# ==================================================
-
 general:
   broadcast-level-up: true
 
-# ==================================================
-#   Death Penalty - how many LEVELS a player loses on death, based on how
-#   far their progression (peak level) has gone. Fully editable: add,
-#   remove, or change tiers freely. "up-to-level" means "applies while the
-#   player's peak level is less than or equal to this number".
-#
-#   Default rules:
-#     Tier 1: level 1  -> before first Diamond item (level 45)   = lose 2
-#     Tier 2: level 45 -> before Diamond Protection III (level 83) = lose 3
-#     Tier 3: level 83 and beyond                                  = lose 4
-#
-#   NOTE: losing levels only reduces the visible level counter and affects
-#   the NEXT death-penalty tier lookup. It never strips away gear the player
-#   has already earned (their sword/armor/axe/bow stay exactly as they are).
-# ==================================================
 death-penalty:
   default-loss: 2
   tiers:
@@ -58,7 +39,7 @@ messages:
   level-up: "&aYou reached level &e{level} &7(&e{stage}&7) &8- &7{max_level} max"
   level-up-broadcast: "&e{player} &7reached level &6{level} &7(&6{stage}&7)"
   level-restored: "&7Level restored: &e{level}&7/{max_level}"
-  death-penalty: "&cYou lost &e{amount} &clevels from dying! Current level: &e{level}"
+  death-penalty: "&cYou lost all your levels from dying! Back to start."
   no-permission: "&cYou don't have permission to do that"
   reloaded: "&aConfig reloaded successfully"
   level-set: "&aSet {player}'s level to {level}"

@@ -3,6 +3,7 @@ com\skypvp\mlevels\managers\LevelManager.class
 com\skypvp\mlevels\compat\LegacyFieldCompat.class
 com\skypvp\mlevels\listeners\GearListener.class
 com\skypvp\mlevels\managers\PlayerDataManager.class
+com\skypvp\mlevels\managers\KitManager.class
 com\skypvp\mlevels\model\Level$Action.class
 com\skypvp\mlevels\placeholder\MLevelsExpansion.class
 com\skypvp\mlevels\compat\ServerVersion.class
@@ -10,6 +11,7 @@ com\skypvp\mlevels\Main.class
 com\skypvp\mlevels\compat\ModernRegistryCompat.class
 com\skypvp\mlevels\commands\LevelCommand.class
 com\skypvp\mlevels\commands\MLevelsCommand.class
+com\skypvp\mlevels\model\RankKit.class
 com\skypvp\mlevels\managers\ConfigManager.class
 com\skypvp\mlevels\compat\GearCompat.class
 com\skypvp\mlevels\managers\LevelManager$1.class

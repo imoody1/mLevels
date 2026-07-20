@@ -1,8 +1,8 @@
 name: mLevels
-version: '1.2'
+version: '1.0.0'
 main: com.skypvp.mlevels.Main
-author: Moody - _Yasta
-description: "A Configurable Gear Leveling System Plugin."
+author: SkyPvP
+description: "Gear leveling system (Iron -> Diamond -> Thorns) that upgrades on every kill, for SkyPvP servers"
 softdepend: [PlaceholderAPI, PlayerKits2]
 
 commands:
