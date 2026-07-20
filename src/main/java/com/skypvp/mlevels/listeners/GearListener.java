@@ -130,8 +130,6 @@ public class GearListener implements Listener {
             int currentLevel = plugin.getPlayerDataManager().getLevel(player.getUniqueId());
             plugin.getLevelManager().applyCumulativeGear(player, Math.max(currentLevel, peakLevel));
         }
-
-        giveRankKit(player);
     }
 
     public void grantStarterKit(Player player) {
@@ -155,8 +153,6 @@ public class GearListener implements Listener {
         } else {
             plugin.getLevelManager().applyCumulativeGear(player, Math.max(currentLevel, peakLevel));
         }
-
-        giveRankKit(player);
     }
 
     private void giveRankKit(Player player) {
