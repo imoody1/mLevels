@@ -326,7 +326,7 @@ levels:
     piece: SWORD
     material: DIAMOND_SWORD
     gear:
-      sword:     {material: DIAMOND_SWORD, sharpness: 3}
+      sword:     {material: DIAMOND_SWORD, sharpness: 0}
 
   46:
     name: "Diamond Chestplate"
@@ -334,7 +334,7 @@ levels:
     piece: CHESTPLATE
     material: DIAMOND_CHESTPLATE
     gear:
-      chestplate: {material: DIAMOND_CHESTPLATE, protection: 3, thorns: 0}
+      chestplate: {material: DIAMOND_CHESTPLATE, protection: 0, thorns: 0}
 
   47:
     name: "Diamond Leggings"
@@ -342,7 +342,7 @@ levels:
     piece: LEGGINGS
     material: DIAMOND_LEGGINGS
     gear:
-      leggings:   {material: DIAMOND_LEGGINGS, protection: 3, thorns: 0}
+      leggings:   {material: DIAMOND_LEGGINGS, protection: 0, thorns: 0}
 
   48:
     name: "Diamond Helmet"
@@ -350,7 +350,7 @@ levels:
     piece: HELMET
     material: DIAMOND_HELMET
     gear:
-      helmet:     {material: DIAMOND_HELMET, protection: 3, thorns: 0}
+      helmet:     {material: DIAMOND_HELMET, protection: 0, thorns: 0}
 
   49:
     name: "Diamond Boots"
@@ -358,7 +358,7 @@ levels:
     piece: BOOTS
     material: DIAMOND_BOOTS
     gear:
-      boots:      {material: DIAMOND_BOOTS, protection: 3, thorns: 0}
+      boots:      {material: DIAMOND_BOOTS, protection: 0, thorns: 0}
 
   50:
     name: "Diamond Axe"
@@ -366,7 +366,7 @@ levels:
     piece: AXE
     material: DIAMOND_AXE
     gear:
-      axe:       {material: DIAMOND_AXE, sharpness: 3}
+      axe:       {material: DIAMOND_AXE, sharpness: 0}
 
   51:
     name: "18 Golden Apples"
