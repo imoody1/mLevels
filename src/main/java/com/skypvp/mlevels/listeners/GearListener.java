@@ -3,7 +3,6 @@ package com.skypvp.mlevels.listeners;
 import com.skypvp.mlevels.Main;
 import com.skypvp.mlevels.model.Level;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -11,16 +10,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
-import org.bukkit.inventory.ItemStack;
 
-import java.util.Iterator;
 import java.util.UUID;
 
 public class GearListener implements Listener {
-
-    private static final String[] PROTECTED_SUFFIXES = {
-            "_SWORD", "_AXE", "_HELMET", "_CHESTPLATE", "_LEGGINGS", "_BOOTS"
-    };
 
     private final Main plugin;
 
@@ -34,13 +27,9 @@ public class GearListener implements Listener {
         Player killer = victim.getKiller();
         UUID victimId = victim.getUniqueId();
 
-        Iterator<ItemStack> it = event.getDrops().iterator();
-        while (it.hasNext()) {
-            ItemStack drop = it.next();
-            if (drop != null && isProtectedGear(drop.getType())) {
-                it.remove();
-            }
-        }
+        // No loot at all on death - nothing drops, nothing is lootable.
+        event.getDrops().clear();
+        event.setDroppedExp(0);
 
         applyDeathPenalty(victim);
 
@@ -49,22 +38,27 @@ public class GearListener implements Listener {
         }
     }
 
-    private boolean isProtectedGear(Material material) {
-        String name = material.name();
-        for (String suffix : PROTECTED_SUFFIXES) {
-            if (name.endsWith(suffix)) return true;
-        }
-        return false;
-    }
-
     private void applyDeathPenalty(Player victim) {
         UUID id = victim.getUniqueId();
-        plugin.getPlayerDataManager().setLevel(id, 0);
-        plugin.getPlayerDataManager().setPeakLevel(id, 0);
+        int peakLevel = plugin.getPlayerDataManager().getPeakLevel(id);
+
+        if (plugin.getConfigManager().isFullResetLevel(peakLevel)) {
+            plugin.getPlayerDataManager().setLevel(id, 0);
+            plugin.getPlayerDataManager().setPeakLevel(id, 0);
+
+            victim.sendMessage(plugin.getConfigManager().msg("death-penalty-reset"));
+            return;
+        }
+
+        int currentLevel = plugin.getPlayerDataManager().getLevel(id);
+        int penalty = plugin.getConfigManager().getDeathPenaltyForLevel(peakLevel);
+        int newLevel = Math.max(0, currentLevel - penalty);
+
+        plugin.getPlayerDataManager().setLevel(id, newLevel);
 
         victim.sendMessage(plugin.getConfigManager().msg("death-penalty")
-                .replace("{amount}", "all")
-                .replace("{level}", "0"));
+                .replace("{amount}", String.valueOf(penalty))
+                .replace("{level}", String.valueOf(newLevel)));
     }
 
     private void levelUp(Player killer) {
@@ -109,16 +103,19 @@ public class GearListener implements Listener {
         }
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onRespawn(PlayerRespawnEvent event) {
         Player player = event.getPlayer();
-        Bukkit.getScheduler().runTask(plugin, () -> handleRespawnGear(player));
+        // Runs a few ticks late and at MONITOR priority on purpose: if another
+        // plugin (a kits plugin, etc.) also gives items on respawn, ours
+        // always applies last and wins, instead of getting overwritten.
+        Bukkit.getScheduler().runTaskLater(plugin, () -> handleRespawnGear(player), 3L);
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        Bukkit.getScheduler().runTask(plugin, () -> initializePlayerGear(player));
+        Bukkit.getScheduler().runTaskLater(plugin, () -> initializePlayerGear(player), 3L);
     }
 
     private void initializePlayerGear(Player player) {
@@ -152,27 +149,6 @@ public class GearListener implements Listener {
             grantStarterKit(player);
         } else {
             plugin.getLevelManager().applyCumulativeGear(player, Math.max(currentLevel, peakLevel));
-        }
-    }
-
-    private void giveRankKit(Player player) {
-        if (!Bukkit.getPluginManager().isPluginEnabled("PlayerKits2")
-                || !plugin.getConfig().getBoolean("rank-kits.enabled", true)) {
-            return;
-        }
-
-        String[] ranks = {"custom", "revon", "turbo", "elite", "vip"};
-        for (String rank : ranks) {
-            String permission = plugin.getConfig().getString("rank-kits.ranks." + rank + ".permission", "group." + rank);
-            if (permission == null || !player.hasPermission(permission)) {
-                continue;
-            }
-
-            String kit = plugin.getConfig().getString("rank-kits.ranks." + rank + ".kit", rank);
-            String command = plugin.getConfig().getString("rank-kits.command", "playerkits2 claim {kit}")
-                    .replace("{kit}", kit == null ? rank : kit);
-            player.performCommand(command);
-            return;
         }
     }
 }

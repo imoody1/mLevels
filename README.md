@@ -37,7 +37,7 @@ Output: `target/mLevels.jar`
 
 ## How leveling works
 - **Level 1 is the default starter kit**: Leather armor (chestplate, leggings,
-  helmet, boots), a Wood Sword, a Wood Axe, a plain Bow, and 1 Golden Apple.
+  helmet, boots), a Stone Sword, a Stone Axe, a plain Bow, and 1 Golden Apple.
   Every player starts here automatically on first join - no external kits
   plugin or permissions needed.
 - Every level (1-119 by default) is **exactly one action**: give a weapon,
@@ -60,17 +60,21 @@ Output: `target/mLevels.jar`
 > resupply amounts in `progression.yml` freely.
 
 ## Death system
-- Sword, Axe, Chestplate, Leggings, Helmet, Boots **never drop** on death,
-  no matter their level or enchants.
-- Everything else (golden apples, enchanted golden apples, ender pearls,
-  arrows, potions, food, etc.) drops normally like vanilla Minecraft.
-- A death penalty then reduces the **level counter** (not gear) based on
-  configurable tiers in `config.yml` -> `death-penalty`:
-  - Tier 1 (level ≤ 44, before first Diamond item): lose 2 levels
-  - Tier 2 (level ≤ 82, before Diamond Protection III): lose 3 levels
-  - Tier 3 (beyond that): lose 4 levels
+- **Nothing drops on death.** All drops and dropped XP are cleared - no loot
+  of any kind ends up on the ground, whether it's gear, apples, arrows, or
+  anything else.
+- A death penalty then reduces the **level counter** (never the gear/peak
+  level) based on a formula in `config.yml` -> `death-penalty`:
+  - peak level < 25: full reset (level and peak both go back to 0)
+  - 25 - 34: lose 4 levels
+  - 35 - 49: lose 5 levels
+  - every 15 additional peak levels past 35 adds 1 more level to the loss
+    (50-64 → 6, 65-79 → 7, ...)
 - On respawn, the plugin always makes sure you have your earned sword/axe/
   armor back (matching your peak level), even though the counter dropped.
+  This re-apply runs a few ticks after respawn/join at MONITOR priority, so
+  it always applies last - if another plugin also touches the player's
+  inventory on respawn, this plugin's gear wins.
 
 ## Commands
 - `/level [player]` - shows current level / peak level
@@ -102,6 +106,10 @@ Aliases for the admin command: `/mlvl`, `/levelup`
   level 7 to Power II at level 19) - matches the intended progression order.
 - "Unlimited" final rewards are implemented as auto-resupply on every kill
   past max level, topping stacks back up to configurable amounts.
-- Death-penalty tiers are keyed off **peak level** (actual gear tier),
+- Death-penalty amounts are keyed off **peak level** (actual gear tier),
   not the fluctuating visible level counter, so the penalty always reflects
   how strong a player's gear really is.
+- If you're testing on an account that already had progress from an older
+  version of `progression.yml`, run `/mlevels reset <yourname>` after
+  updating - old saved level numbers don't automatically remap if the
+  level list itself changed.

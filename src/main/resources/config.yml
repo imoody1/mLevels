@@ -1,45 +1,44 @@
 general:
   broadcast-level-up: true
 
+# ==================================================
+#   Death Penalty - fully formula-based and editable.
+#
+#   - Below "full-reset-below-level": a death fully resets the player
+#     (level AND peak level both go back to 0 - loses all gear too).
+#   - From "base-tier-start" up to (not including) "step-tier-start":
+#     lose "base-loss" levels per death.
+#   - From "step-tier-start" onward: lose "step-loss" levels, and that
+#     loss increases by "step-increment" every "step-size" additional
+#     levels of peak progress.
+#
+#   Default rules with the values below:
+#     peak < 25            -> full reset
+#     25 <= peak < 35       -> lose 4 levels
+#     35 <= peak < 50       -> lose 5 levels
+#     50 <= peak < 65       -> lose 6 levels
+#     65 <= peak < 80       -> lose 7 levels
+#     ... (+1 every 15 levels past 35)
+#
+#   NOTE: this only ever changes the visible level counter, never the
+#   player's peak level / earned gear - see the plugin's leveling docs.
+# ==================================================
 death-penalty:
-  default-loss: 2
-  tiers:
-    tier1:
-      up-to-level: 44
-      levels-lost: 2
-    tier2:
-      up-to-level: 82
-      levels-lost: 3
-    tier3:
-      up-to-level: 999999
-      levels-lost: 4
-
-rank-kits:
-  enabled: true
-  command: "playerkits2 claim {kit}"
-  ranks:
-    custom:
-      permission: "group.custom"
-      kit: "custom"
-    revon:
-      permission: "group.revon"
-      kit: "revon"
-    turbo:
-      permission: "group.turbo"
-      kit: "turbo"
-    elite:
-      permission: "group.elite"
-      kit: "elite"
-    vip:
-      permission: "group.vip"
-      kit: "vip"
+  full-reset-below-level: 25
+  base-tier-start: 25
+  base-loss: 4
+  step-tier-start: 35
+  step-loss: 5
+  step-size: 15
+  step-increment: 1
 
 messages:
   prefix: "&8[&6mLevels&8] &r"
   level-up: "&aYou reached level &e{level} &7(&e{stage}&7) &8- &7{max_level} max"
   level-up-broadcast: "&e{player} &7reached level &6{level} &7(&6{stage}&7)"
   level-restored: "&7Level restored: &e{level}&7/{max_level}"
-  death-penalty: "&cYou lost all your levels from dying! Back to start."
+  death-penalty: "&cYou lost &e{amount} &clevels from dying! Current level: &e{level}"
+  death-penalty-reset: "&cYou lost all your levels from dying! Back to start."
   no-permission: "&cYou don't have permission to do that"
   reloaded: "&aConfig reloaded successfully"
   level-set: "&aSet {player}'s level to {level}"

@@ -2,52 +2,64 @@ package com.skypvp.mlevels.managers;
 
 import com.skypvp.mlevels.Main;
 import org.bukkit.ChatColor;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ConfigManager {
 
     private final Main plugin;
     private FileConfiguration config;
 
-    private final List<int[]> penaltyTiers = new ArrayList<>();
-    private int defaultPenalty = 2;
+    private int fullResetBelowLevel;
+    private int baseTierStart;
+    private int baseLoss;
+    private int stepTierStart;
+    private int stepLoss;
+    private int stepSize;
+    private int stepIncrement;
 
     public ConfigManager(Main plugin) {
         this.plugin = plugin;
         this.config = plugin.getConfig();
-        loadPenaltyTiers();
+        loadPenaltySettings();
     }
 
     public void reload() {
         this.config = plugin.getConfig();
-        penaltyTiers.clear();
-        loadPenaltyTiers();
+        loadPenaltySettings();
     }
 
-    private void loadPenaltyTiers() {
-        defaultPenalty = config.getInt("death-penalty.default-loss", 2);
-
-        ConfigurationSection section = config.getConfigurationSection("death-penalty.tiers");
-        if (section == null) return;
-
-        for (String key : section.getKeys(false)) {
-            int upToLevel = config.getInt("death-penalty.tiers." + key + ".up-to-level", Integer.MAX_VALUE);
-            int loss = config.getInt("death-penalty.tiers." + key + ".levels-lost", defaultPenalty);
-            penaltyTiers.add(new int[]{upToLevel, loss});
-        }
-        penaltyTiers.sort((a, b) -> Integer.compare(a[0], b[0]));
+    private void loadPenaltySettings() {
+        // Default rules:
+        //   peak level < 25           -> full reset (level and peak both go to 0)
+        //   25 <= peak level < 35     -> lose 4 levels
+        //   35 <= peak level < 50     -> lose 5 levels
+        //   every extra "step-size" levels above "step-tier-start" adds
+        //   "step-increment" more levels lost (50-64 -> 6, 65-79 -> 7, ...)
+        fullResetBelowLevel = config.getInt("death-penalty.full-reset-below-level", 25);
+        baseTierStart = config.getInt("death-penalty.base-tier-start", 25);
+        baseLoss = config.getInt("death-penalty.base-loss", 4);
+        stepTierStart = config.getInt("death-penalty.step-tier-start", 35);
+        stepLoss = config.getInt("death-penalty.step-loss", 5);
+        stepSize = config.getInt("death-penalty.step-size", 15);
+        stepIncrement = config.getInt("death-penalty.step-increment", 1);
     }
 
+    /** True when a death at this peak level should fully reset the player back to level 0. */
+    public boolean isFullResetLevel(int peakLevel) {
+        return peakLevel < fullResetBelowLevel;
+    }
+
+    /**
+     * How many levels a player at the given peak level loses on death, for
+     * peak levels at/above {@code full-reset-below-level} (check
+     * {@link #isFullResetLevel(int)} first - this method assumes it's false).
+     */
     public int getDeathPenaltyForLevel(int peakLevel) {
-        if (penaltyTiers.isEmpty()) return defaultPenalty;
-        for (int[] tier : penaltyTiers) {
-            if (peakLevel <= tier[0]) return tier[1];
+        if (peakLevel < stepTierStart) {
+            return baseLoss; // e.g. 25-34 -> 4
         }
-        return penaltyTiers.get(penaltyTiers.size() - 1)[1];
+        int stepsPast = (peakLevel - stepTierStart) / stepSize; // 0 for 35-49, 1 for 50-64, ...
+        return stepLoss + (stepsPast * stepIncrement); // e.g. 35-49 -> 5, 50-64 -> 6, ...
     }
 
     public FileConfiguration getConfig() {

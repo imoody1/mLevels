@@ -7,8 +7,8 @@ levels:
     material: GOLDEN_APPLE
     amount: 1
     gear:
-      sword:     {material: WOODEN_SWORD, sharpness: 0}
-      axe:       {material: WOODEN_AXE, sharpness: 0}
+      sword:     {material: STONE_SWORD, sharpness: 0}
+      axe:       {material: STONE_AXE, sharpness: 0}
       bow:       {power: 0, punch: 0}
       chestplate: {material: LEATHER_CHESTPLATE, protection: 0, thorns: 0}
       leggings:   {material: LEATHER_LEGGINGS, protection: 0, thorns: 0}
